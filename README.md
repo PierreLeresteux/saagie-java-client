@@ -133,6 +133,6 @@ If your Saagie Manager is in version _v1.2.0 (build 632)_, use the SaagieJavaCli
 
 ```
 dependencies {
-    testCompile 'io.saagie:saagieclient:1.2.0'
+    compile 'io.saagie:saagieclient:1.2.0'
 }
 ```
