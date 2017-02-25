@@ -23,10 +23,14 @@ import io.saagie.client.internal.AbstractSaagieClient
 class SaagieClientRaw : AbstractSaagieClient() {
 
     fun getAllPlatforms(): String {
-        return platformClient.getAllPlatforms(this).text
+        return platformClient.getAllPlatforms().text
     }
 
     fun getAPlatform(id: Int): String {
-        return platformClient.getAPlatform(id, this).text
+        return platformClient.getAPlatform(id).text
+    }
+
+    fun getConnectionInformationForAPlatform(id: Int): String {
+        return platformClient.getConnectionInformationForAPlatform(id).text
     }
 }

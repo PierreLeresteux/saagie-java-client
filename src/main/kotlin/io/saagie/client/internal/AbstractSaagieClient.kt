@@ -27,12 +27,7 @@ open class AbstractSaagieClient {
     var password: String = ""
     var timeout: Double = 20.0
 
-    var platformClient = PlatformClient()
-
-
-    fun changePlatformClient(value: PlatformClient) {
-        platformClient = value
-    }
+    var platformClient = PlatformClient(this)
 
     internal fun checkResponse(response: Response) {
         if (response.statusCode > 299)

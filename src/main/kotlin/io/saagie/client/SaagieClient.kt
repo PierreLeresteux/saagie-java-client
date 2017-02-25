@@ -17,6 +17,7 @@ package io.saagie.client
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
+import io.saagie.client.dto.platform.Capsule
 import io.saagie.client.dto.platform.Platform
 import io.saagie.client.internal.AbstractSaagieClient
 
@@ -28,13 +29,18 @@ class SaagieClient : AbstractSaagieClient() {
     val mapper = jacksonObjectMapper()
 
     fun getAllPlatforms(): List<Platform>? {
-        val platforms: List<Platform>? = mapper.readValue(platformClient.getAllPlatforms(this).text)
+        val platforms: List<Platform>? = mapper.readValue(platformClient.getAllPlatforms().text)
         return platforms
     }
 
     fun getAPlatform(id: Int): Platform? {
-        val platform: Platform? = mapper.readValue(platformClient.getAPlatform(id, this).text)
+        val platform: Platform? = mapper.readValue(platformClient.getAPlatform(id).text)
         return platform
+    }
+
+    fun getConnectionInformationForAPlatform(id: Int): List<Capsule>? {
+        val connectionInfo: List<Capsule>? = mapper.readValue(platformClient.getConnectionInformationForAPlatform(id).text)
+        return connectionInfo
     }
 
 }

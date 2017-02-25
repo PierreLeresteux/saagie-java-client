@@ -25,10 +25,14 @@ import org.json.JSONObject
 class SaagieClientJson : AbstractSaagieClient() {
 
     fun getAllPlatforms(): JSONArray {
-        return platformClient.getAllPlatforms(this).jsonArray
+        return platformClient.getAllPlatforms().jsonArray
     }
 
     fun getAPlatform(id: Int): JSONObject {
-        return platformClient.getAPlatform(id, this).jsonObject
+        return platformClient.getAPlatform(id).jsonObject
+    }
+
+    fun getConnectionInformationForAPlatform(id: Int): JSONArray {
+        return platformClient.getConnectionInformationForAPlatform(id).jsonArray
     }
 }
