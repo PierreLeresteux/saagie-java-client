@@ -1,4 +1,4 @@
-#Saagie Java Client
+#Saagie Java Client [![Build Status](https://travis-ci.org/PierreLeresteux/saagie-java-client.svg?branch=1.2)](https://travis-ci.org/PierreLeresteux/saagie-java-client)
 
 Saagie Java Client is a library to easily call Saagie Manager. 
 
