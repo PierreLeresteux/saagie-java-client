@@ -33,4 +33,8 @@ class SaagieClientRaw : AbstractSaagieClient() {
     fun getConnectionInformationForAPlatform(id: Int): String {
         return platformClient.getConnectionInformationForAPlatform(id).text
     }
+
+    fun getCapsuleConnectionInformationForAPlatform(id: Int, capsuleCode: String): String {
+        return platformClient.getCapsuleConnectionInformationForAPlatform(id, capsuleCode).text
+    }
 }

@@ -42,4 +42,10 @@ open class PlatformClient(var client: AbstractSaagieClient) {
         return response
     }
 
+    fun getCapsuleConnectionInformationForAPlatform(id: Int, capsuleCode: String): Response {
+        val response = get(client.baseURL + "/platform/" + id + "/connectioninfo/" + capsuleCode, auth = BasicAuthorization(client.user, client.password), timeout = client.timeout)
+        client.checkResponse(response)
+        return response
+    }
+
 }

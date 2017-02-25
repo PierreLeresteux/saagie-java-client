@@ -43,4 +43,9 @@ class SaagieClient : AbstractSaagieClient() {
         return connectionInfo
     }
 
+    fun getCapsuleConnectionInformationForAPlatform(id: Int, capsuleCode: String): Capsule? {
+        val capsule: Capsule? = mapper.readValue(platformClient.getCapsuleConnectionInformationForAPlatform(id, capsuleCode).text)
+        return capsule
+    }
+
 }

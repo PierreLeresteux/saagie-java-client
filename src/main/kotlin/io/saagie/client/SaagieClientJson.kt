@@ -35,4 +35,8 @@ class SaagieClientJson : AbstractSaagieClient() {
     fun getConnectionInformationForAPlatform(id: Int): JSONArray {
         return platformClient.getConnectionInformationForAPlatform(id).jsonArray
     }
+
+    fun getCapsuleConnectionInformationForAPlatform(id: Int, capsuleCode: String): JSONObject {
+        return platformClient.getCapsuleConnectionInformationForAPlatform(id, capsuleCode).jsonObject
+    }
 }
