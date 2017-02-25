@@ -20,13 +20,12 @@ import khttp.responses.Response
 /**
  * Created by pierre on 24/02/2017.
  */
-open class AbstractSaagieClient {
-
-    var baseURL: String = "https://manager.prod.saagie.io/api/v1"
-    var user: String = ""
-    var password: String = ""
-    var timeout: Double = 20.0
-
+open class AbstractSaagieClient(
+        var baseURL: String = "https://manager.prod.saagie.io/api/v1",
+        var user: String = "",
+        var password: String = "",
+        var timeout: Double = 20.0
+) {
     var platformClient = PlatformClient(this)
 
     internal fun checkResponse(response: Response) {
