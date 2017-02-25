@@ -9,8 +9,13 @@
 
 	<packaging>jar</packaging>
 
-	<name>Saagie Client</name>
+    <name>${project.name}</name>
 	<description>Saagie HTTP client</description>
+    <inceptionYear>${project.inceptionYear}</inceptionYear>
+    <organization>
+        <name>${project.organization.name}</name>
+        <url>${project.organization.url}</url>
+    </organization>
 
     <developers>
         <developer>
@@ -30,20 +35,25 @@
     <properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>1.8</java.version>
-		<kotlin.version>1.0.6</kotlin.version>
-		<junit.version>4.12</junit.version>
-		<junit.jupiter.version>5.0.0-M3</junit.jupiter.version>
-		<junit.vintage.version>${junit.version}.0-M3</junit.vintage.version>
-		<junit.platform.version>1.0.0-M3</junit.platform.version>
-		<kluent.version>1.15</kluent.version>
-		<spek-junit.version>1.1.0-beta2</spek-junit.version>
-		<maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
-		<maven-assembly-plugin.version>2.6</maven-assembly-plugin.version>
-		<khttp.version>0.1.0</khttp.version>
-		<maven-shade-plugin.version>2.4</maven-shade-plugin.version>
-		<jackson-module-kotlin.version>2.8.7</jackson-module-kotlin.version>
-	</properties>
+        <project.organization.name>Saagie</project.organization.name>
+        <project.organization.url>https://www.saagie.com</project.organization.url>
+        <project.inceptionYear>2017</project.inceptionYear>
+        <project.name>Saagie Client</project.name>
+        <project.organization.email>pierre@saagie.com</project.organization.email>
+        <java.version>1.8</java.version>
+        <kotlin.version>1.0.6</kotlin.version>
+        <junit.version>4.12</junit.version>
+        <junit.jupiter.version>5.0.0-M3</junit.jupiter.version>
+        <junit.vintage.version>${junit.version}.0-M3</junit.vintage.version>
+        <junit.platform.version>1.0.0-M3</junit.platform.version>
+        <kluent.version>1.15</kluent.version>
+        <spek-junit.version>1.1.0-beta2</spek-junit.version>
+        <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
+        <maven-assembly-plugin.version>2.6</maven-assembly-plugin.version>
+        <khttp.version>0.1.0</khttp.version>
+        <maven-shade-plugin.version>2.4</maven-shade-plugin.version>
+        <jackson-module-kotlin.version>2.8.7</jackson-module-kotlin.version>
+    </properties>
 
 	<dependencies>
 
@@ -189,6 +199,35 @@
 					</dependency>
 				</dependencies>
 			</plugin>
+            <plugin>
+                <groupId>com.mycila</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <version>3.0</version>
+                <configuration>
+                    <header>com/mycila/maven/plugin/license/templates/APACHE-2.txt</header>
+                    <includes>
+                        <include>src/main/kotlin/**</include>
+                        <include>src/test/kotlin/**</include>
+                    </includes>
+                    <properties>
+                        <owner>${project.organization.name}</owner>
+                        <year>${project.inceptionYear}</year>
+                        <email>${project.organization.email}</email>
+                    </properties>
+                    <useDefaultExcludes>true</useDefaultExcludes>
+                    <mapping>
+                        <kt>javadoc_style</kt>
+                    </mapping>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <phase>process-sources</phase>
+                    </execution>
+                </executions>
+            </plugin>
 		</plugins>
 	</build>
 
