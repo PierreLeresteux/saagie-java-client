@@ -31,12 +31,25 @@ internal class AbstractSaagieClientTest : Spek({
     describe("an AbstractClientString") {
         val abstractSaagieClient = AbstractSaagieClient()
         val response = mock(Response::class)
-        on("creation") {
+        on("creation without fields") {
             it("should have default values for properties") {
                 abstractSaagieClient.baseURL shouldEqualTo "https://manager.prod.saagie.io/api/v1"
                 abstractSaagieClient.user.shouldBeEmpty()
                 abstractSaagieClient.password.shouldBeEmpty()
                 abstractSaagieClient.timeout shouldEqualTo 20.0
+            }
+        }
+        on("creation with fields") {
+            it("should have overriden properties") {
+                val overridenAbstractSaagieClient = AbstractSaagieClient(
+                        baseURL = "http://new",
+                        user = "newUser",
+                        password = "newPassword",
+                        timeout = 10.0)
+                overridenAbstractSaagieClient.baseURL shouldEqualTo "http://new"
+                overridenAbstractSaagieClient.user shouldEqualTo "newUser"
+                overridenAbstractSaagieClient.password shouldEqualTo "newPassword"
+                overridenAbstractSaagieClient.timeout shouldEqualTo 10.0
             }
         }
         on("checkResponse") {
