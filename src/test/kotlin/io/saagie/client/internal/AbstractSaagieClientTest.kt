@@ -49,7 +49,6 @@ internal class AbstractSaagieClientTest : Spek({
                 }
             }
             it("should not return an exception if status code = 299") {
-                val response = mock(Response::class)
                 When calling response.statusCode itReturns 299
                 try {
                     abstractSaagieClient.checkResponse(response)
@@ -58,7 +57,6 @@ internal class AbstractSaagieClientTest : Spek({
                 }
             }
             it("should return an exception if status code > 299") {
-                val response = mock(Response::class)
                 When calling response.statusCode itReturns 300
                 try {
                     abstractSaagieClient.checkResponse(response)
