@@ -24,7 +24,10 @@ import io.saagie.client.internal.AbstractSaagieClient
 /**
  * Created by pierre on 24/02/2017.
  */
-class SaagieClient : AbstractSaagieClient() {
+class SaagieClient(override var baseURL: String = "https://manager.prod.saagie.io/api/v1",
+                   override var user: String = "",
+                   override var password: String = "",
+                   override var timeout: Double = 20.0) : AbstractSaagieClient() {
 
     val mapper = jacksonObjectMapper()
 

@@ -22,7 +22,10 @@ import org.json.JSONObject
 /**
  * Created by pierre on 24/02/2017.
  */
-class SaagieClientJson : AbstractSaagieClient() {
+class SaagieClientJson(override var baseURL: String = "https://manager.prod.saagie.io/api/v1",
+                       override var user: String = "",
+                       override var password: String = "",
+                       override var timeout: Double = 20.0) : AbstractSaagieClient() {
 
     fun getAllPlatforms(): JSONArray {
         return platformClient.getAllPlatforms().jsonArray
