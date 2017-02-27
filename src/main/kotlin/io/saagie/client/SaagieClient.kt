@@ -18,6 +18,7 @@ package io.saagie.client
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import io.saagie.client.dto.platform.Capsule
+import io.saagie.client.dto.platform.EnvVar
 import io.saagie.client.dto.platform.Platform
 import io.saagie.client.internal.AbstractSaagieClient
 
@@ -51,4 +52,8 @@ class SaagieClient(override var baseURL: String = "https://manager.prod.saagie.i
         return capsule
     }
 
+    fun getAllEnvVarsForAPlatform(id: Int): List<EnvVar>? {
+        val envVars: List<EnvVar>? = mapper.readValue(platformClient.getAllEnvVarsForAPlatform(id).text)
+        return envVars
+    }
 }

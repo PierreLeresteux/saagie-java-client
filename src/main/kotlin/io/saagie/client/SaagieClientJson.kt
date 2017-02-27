@@ -42,4 +42,8 @@ class SaagieClientJson(override var baseURL: String = "https://manager.prod.saag
     fun getCapsuleConnectionInformationForAPlatform(id: Int, capsuleCode: String): JSONObject {
         return platformClient.getCapsuleConnectionInformationForAPlatform(id, capsuleCode).jsonObject
     }
+
+    fun getAllEnvVarsForAPlatform(id: Int): JSONArray {
+        return platformClient.getAllEnvVarsForAPlatform(id).jsonArray
+    }
 }

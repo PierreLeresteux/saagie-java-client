@@ -48,4 +48,9 @@ open class PlatformClient(var client: AbstractSaagieClient) {
         return response
     }
 
+    fun getAllEnvVarsForAPlatform(id: Int): Response {
+        val response = get(client.baseURL + "/platform/" + id + "/envvars", auth = BasicAuthorization(client.user, client.password), timeout = client.timeout)
+        client.checkResponse(response)
+        return response
+    }
 }
