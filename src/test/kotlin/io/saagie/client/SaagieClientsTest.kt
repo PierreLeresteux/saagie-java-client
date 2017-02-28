@@ -34,6 +34,7 @@ internal class SaagieClientsTest : Spek({
             saagieClientJson = SaagieClientJson(baseURL = mockServer.baseUrl())
             saagieClient = SaagieClient(baseURL = mockServer.baseUrl())
         }
+
         on("call all platforms") {
             it("should return the list of all platforms") {
                 val rawResponse = saagieClientRaw.getAllPlatforms()
@@ -86,6 +87,17 @@ internal class SaagieClientsTest : Spek({
                 jsonResponse.toString() shouldEqualTo JSONArray(PlatformConstants.ALL_ENVVARS.value).toString()
                 val response = saagieClient.getAllEnvVarsForAPlatform(2)
                 response shouldEqual gson.fromJson<List<EnvVar>>(PlatformConstants.ALL_ENVVARS.value)
+            }
+        }
+
+        on("call create an envVar for a platform") {
+            it("should return the created envvar for a platform") {
+                val rawResponse = saagieClientRaw.createEnvVarForAPlatform(2, gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value))
+                rawResponse shouldEqualTo PlatformConstants.CREATED_ENVVAR.value
+                val jsonResponse = saagieClientJson.createEnvVarForAPlatform(2, gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value))
+                jsonResponse.toString() shouldEqualTo JSONObject(PlatformConstants.CREATED_ENVVAR.value).toString()
+                val response = saagieClient.createEnvVarForAPlatform(2, gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value))
+                response shouldEqual gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value)
             }
         }
 

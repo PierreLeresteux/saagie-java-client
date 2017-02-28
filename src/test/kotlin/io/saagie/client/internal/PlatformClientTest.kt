@@ -15,8 +15,12 @@
  */
 package io.saagie.client.internal
 
+import com.github.salomonbrys.kotson.fromJson
+import com.google.gson.Gson
+import io.saagie.client.dto.platform.EnvVar
 import io.saagie.client.mockserver.PlatformConstants
 import io.saagie.client.mockserver.SaagieManagerMockServer
+import org.amshove.kluent.shouldBeEmpty
 import org.amshove.kluent.shouldEqualTo
 import org.jetbrains.spek.api.Spek
 import org.jetbrains.spek.api.dsl.describe
@@ -30,6 +34,7 @@ import org.jetbrains.spek.api.dsl.on
 internal class PlatformClientTest : Spek({
     var platformClient = PlatformClient(AbstractSaagieClient())
     val mockServer = SaagieManagerMockServer()
+    val gson = Gson()
 
     describe("in a context of a PlatformClient") {
 
@@ -39,6 +44,7 @@ internal class PlatformClientTest : Spek({
                     AbstractSaagieClient(baseURL = mockServer.baseUrl())
             )
         }
+
         on("call all platforms") {
             it("should return the list of all platforms") {
                 val response = platformClient.getAllPlatforms()
@@ -55,16 +61,16 @@ internal class PlatformClientTest : Spek({
             }
         }
 
-        on("call connection information for a platform") {
-            it("should return the list of connection information for a platform") {
+        on("call capsules for a platform") {
+            it("should return the list of capsule for a platform") {
                 val response = platformClient.getAllCapsulesForAPlatorm(2)
                 response.code() shouldEqualTo 200
                 response.body().string() shouldEqualTo PlatformConstants.ALL_CAPSULES.value
             }
         }
 
-        on("call connection information for a platform and a capsulecode") {
-            it("should return the connection information for a platform and a capsulecode") {
+        on("call capsule for a platform and a capsulecode") {
+            it("should return the capsule for a platform and a capsulecode") {
                 val response = platformClient.getACapsuleForAPlatform(2, "mongo")
                 response.code() shouldEqualTo 200
                 response.body().string() shouldEqualTo PlatformConstants.MONGO_CAPSULE.value
@@ -76,6 +82,22 @@ internal class PlatformClientTest : Spek({
                 val response = platformClient.getAllEnvVarsForAPlatform(2)
                 response.code() shouldEqualTo 200
                 response.body().string() shouldEqualTo PlatformConstants.ALL_ENVVARS.value
+            }
+        }
+
+        on("call create an envVar for a platform") {
+            it("should return the created envvar for a platform") {
+                val response = platformClient.createEnvVarForAPlatform(2, gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value))
+                response.code() shouldEqualTo 200
+                response.body().string() shouldEqualTo PlatformConstants.CREATED_ENVVAR.value
+            }
+        }
+
+        on("call delete an envVar for a platform") {
+            it("should return a non-content response") {
+                val response = platformClient.deleteEnvVarForAPlatform(2, 1)
+                response.code() shouldEqualTo 204
+                response.body().string().shouldBeEmpty()
             }
         }
 

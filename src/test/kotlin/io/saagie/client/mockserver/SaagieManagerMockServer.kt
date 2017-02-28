@@ -40,7 +40,11 @@ class SaagieManagerMockServer {
                     baseUrl.encodedPath() + "/platform/2" -> return MockResponse().setResponseCode(200).setBody(PlatformConstants.ONE_PLATFORM.value)
                     baseUrl.encodedPath() + "/platform/2/connectioninfo" -> return MockResponse().setResponseCode(200).setBody(PlatformConstants.ALL_CAPSULES.value)
                     baseUrl.encodedPath() + "/platform/2/connectioninfo/mongo" -> return MockResponse().setResponseCode(200).setBody(PlatformConstants.MONGO_CAPSULE.value)
-                    baseUrl.encodedPath() + "/platform/2/envvars" -> return MockResponse().setResponseCode(200).setBody(PlatformConstants.ALL_ENVVARS.value)
+                    baseUrl.encodedPath() + "/platform/2/envvars" -> {
+                        if (request.method == "POST")
+                            return MockResponse().setResponseCode(200).setBody(PlatformConstants.CREATED_ENVVAR.value)
+                        return MockResponse().setResponseCode(200).setBody(PlatformConstants.ALL_ENVVARS.value)
+                    }
                 }
                 return MockResponse().setResponseCode(404)
             }

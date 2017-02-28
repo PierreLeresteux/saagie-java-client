@@ -30,23 +30,27 @@ class SaagieClientRaw(override var baseURL: String = "https://manager.prod.saagi
         return platformClient.getAllPlatforms().body().string()
     }
 
-    fun getAPlatform(id: Int): String {
-        return platformClient.getAPlatform(id).body().string()
+    fun getAPlatform(platformId: Int): String {
+        return platformClient.getAPlatform(platformId).body().string()
     }
 
-    fun getAllCapsulesForAPlatorm(id: Int): String {
-        return platformClient.getAllCapsulesForAPlatorm(id).body().string()
+    fun getAllCapsulesForAPlatorm(platformId: Int): String {
+        return platformClient.getAllCapsulesForAPlatorm(platformId).body().string()
     }
 
-    fun getACapsuleForAPlatform(id: Int, capsuleCode: String): String {
-        return platformClient.getACapsuleForAPlatform(id, capsuleCode).body().string()
+    fun getACapsuleForAPlatform(platformId: Int, capsuleCode: String): String {
+        return platformClient.getACapsuleForAPlatform(platformId, capsuleCode).body().string()
     }
 
-    fun getAllEnvVarsForAPlatform(id: Int): String {
-        return platformClient.getAllEnvVarsForAPlatform(id).body().string()
+    fun getAllEnvVarsForAPlatform(platformId: Int): String {
+        return platformClient.getAllEnvVarsForAPlatform(platformId).body().string()
     }
 
-    fun createEnvVarForAPlatform(id: Int, envVar: EnvVar): String {
-        return platformClient.createEnvVarForAPlatform(id, envVar).body().string()
+    fun createEnvVarForAPlatform(platformId: Int, envVar: EnvVar): String {
+        return platformClient.createEnvVarForAPlatform(platformId, envVar).body().string()
+    }
+
+    fun deleteEnvVarForAPlatform(platformId: Int, envvarId: Int) {
+        platformClient.deleteEnvVarForAPlatform(platformId, envvarId).body().string()
     }
 }

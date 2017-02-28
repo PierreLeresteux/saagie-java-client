@@ -32,23 +32,27 @@ class SaagieClientJson(override var baseURL: String = "https://manager.prod.saag
         return JSONArray(platformClient.getAllPlatforms().body().string())
     }
 
-    fun getAPlatform(id: Int): JSONObject {
-        return JSONObject(platformClient.getAPlatform(id).body().string())
+    fun getAPlatform(platformId: Int): JSONObject {
+        return JSONObject(platformClient.getAPlatform(platformId).body().string())
     }
 
-    fun getAllCapsulesForAPlatorm(id: Int): JSONArray {
-        return JSONArray(platformClient.getAllCapsulesForAPlatorm(id).body().string())
+    fun getAllCapsulesForAPlatorm(platformId: Int): JSONArray {
+        return JSONArray(platformClient.getAllCapsulesForAPlatorm(platformId).body().string())
     }
 
-    fun getACapsuleForAPlatform(id: Int, capsuleCode: String): JSONObject {
-        return JSONObject(platformClient.getACapsuleForAPlatform(id, capsuleCode).body().string())
+    fun getACapsuleForAPlatform(platformId: Int, capsuleCode: String): JSONObject {
+        return JSONObject(platformClient.getACapsuleForAPlatform(platformId, capsuleCode).body().string())
     }
 
-    fun getAllEnvVarsForAPlatform(id: Int): JSONArray {
-        return JSONArray(platformClient.getAllEnvVarsForAPlatform(id).body().string())
+    fun getAllEnvVarsForAPlatform(platformId: Int): JSONArray {
+        return JSONArray(platformClient.getAllEnvVarsForAPlatform(platformId).body().string())
     }
 
-    fun createEnvVarForAPlatform(id: Int, envVar: EnvVar): JSONObject {
-        return JSONObject(platformClient.createEnvVarForAPlatform(id, envVar).body().string())
+    fun createEnvVarForAPlatform(platformId: Int, envVar: EnvVar): JSONObject {
+        return JSONObject(platformClient.createEnvVarForAPlatform(platformId, envVar).body().string())
+    }
+
+    fun deleteEnvVarForAPlatform(platformId: Int, envvarId: Int) {
+        platformClient.deleteEnvVarForAPlatform(platformId, envvarId).body().string()
     }
 }
