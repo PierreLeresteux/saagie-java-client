@@ -40,7 +40,7 @@ By default, all are connected to Saagie Kumo (our cloud), if you want to connect
 
 `saagieClient.setBaseURL("https://your-saagie-manager-url/api/v1");`
 
-### Authentication 
+## Authentication 
 
 You have to set your credentials to use the Saagie Client. 
 
@@ -49,13 +49,19 @@ saagieClient.setUser("login");
 saagieClient.setPassword("password");
 ```
 
-### Timeout
+## Timeout
 
 By default a timeout is set to 20 seconds, you can override the value (in seconds).
 
 ```saagieClient.setTimeout(10.0)``` will set the timeout at 10 seconds
 
-### Usage
+## Alternatives
+
+You can construct a SaagieClient (or SaagieClientRaw and SaagieClientJson), with all informations : 
+
+```new SaagieClient("https://manager.prod.saagie.io/api/v1","user","password",10);```
+
+## Usage
 
 ##### GET informations (for a platform, get job status and logs, ...)
 For example, to list all the platform you have access, this is the code of a simple application : 
