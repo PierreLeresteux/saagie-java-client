@@ -25,31 +25,41 @@ import khttp.structures.authorization.BasicAuthorization
 open class PlatformClient(var client: AbstractSaagieClient) {
 
     fun getAllPlatforms(): Response {
-        val response = get(client.baseURL + "/platform", auth = BasicAuthorization(client.user, client.password), timeout = client.timeout)
+        val response = get(client.baseURL + "/platform",
+                auth = BasicAuthorization(client.user, client.password),
+                timeout = client.timeout)
         client.checkResponse(response)
         return response
     }
 
     fun getAPlatform(id: Int): Response {
-        val response = get(client.baseURL + "/platform/" + id, auth = BasicAuthorization(client.user, client.password), timeout = client.timeout)
+        val response = get(client.baseURL + "/platform/" + id,
+                auth = BasicAuthorization(client.user, client.password),
+                timeout = client.timeout)
         client.checkResponse(response)
         return response
     }
 
     fun getConnectionInformationForAPlatform(id: Int): Response {
-        val response = get(client.baseURL + "/platform/" + id + "/connectioninfo", auth = BasicAuthorization(client.user, client.password), timeout = client.timeout)
+        val response = get(client.baseURL + "/platform/" + id + "/connectioninfo",
+                auth = BasicAuthorization(client.user, client.password),
+                timeout = client.timeout)
         client.checkResponse(response)
         return response
     }
 
     fun getCapsuleConnectionInformationForAPlatform(id: Int, capsuleCode: String): Response {
-        val response = get(client.baseURL + "/platform/" + id + "/connectioninfo/" + capsuleCode, auth = BasicAuthorization(client.user, client.password), timeout = client.timeout)
+        val response = get(client.baseURL + "/platform/" + id + "/connectioninfo/" + capsuleCode,
+                auth = BasicAuthorization(client.user, client.password),
+                timeout = client.timeout)
         client.checkResponse(response)
         return response
     }
 
     fun getAllEnvVarsForAPlatform(id: Int): Response {
-        val response = get(client.baseURL + "/platform/" + id + "/envvars", auth = BasicAuthorization(client.user, client.password), timeout = client.timeout)
+        val response = get(client.baseURL + "/platform/" + id + "/envvars",
+                auth = BasicAuthorization(client.user, client.password),
+                timeout = client.timeout)
         client.checkResponse(response)
         return response
     }
