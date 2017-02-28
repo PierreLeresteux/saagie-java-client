@@ -15,52 +15,85 @@
  */
 package io.saagie.client.internal
 
-import khttp.get
-import khttp.responses.Response
-import khttp.structures.authorization.BasicAuthorization
+import com.google.gson.Gson
+import io.saagie.client.dto.platform.EnvVar
+import okhttp3.*
 
 /**
  * Created by pierre on 24/02/2017.
  */
 open class PlatformClient(var client: AbstractSaagieClient) {
 
+    val PLATFORM = "platform"
+    val CONNECTIONINFO = "connectioninfo"
+    val ENVVARS = "envvars"
+    val gson = Gson()
+
     fun getAllPlatforms(): Response {
-        val response = get(client.baseURL + "/platform",
-                auth = BasicAuthorization(client.user, client.password),
-                timeout = client.timeout)
-        client.checkResponse(response)
+        val request = Request.Builder()
+                .url(client.constructURL(PLATFORM))
+                .header("Authorization", Credentials.basic(client.user, client.password))
+                .build();
+
+        var response = client.httpClient.newCall(request).execute()
+        client.checkResponse(response.code(), response)
         return response
     }
 
     fun getAPlatform(id: Int): Response {
-        val response = get(client.baseURL + "/platform/" + id,
-                auth = BasicAuthorization(client.user, client.password),
-                timeout = client.timeout)
-        client.checkResponse(response)
+        val request = Request.Builder()
+                .url(client.constructURL(PLATFORM, id))
+                .header("Authorization", Credentials.basic(client.user, client.password))
+                .build();
+
+        var response = client.httpClient.newCall(request).execute()
+        client.checkResponse(response.code(), response)
         return response
     }
 
     fun getConnectionInformationForAPlatform(id: Int): Response {
-        val response = get(client.baseURL + "/platform/" + id + "/connectioninfo",
-                auth = BasicAuthorization(client.user, client.password),
-                timeout = client.timeout)
-        client.checkResponse(response)
+        val request = Request.Builder()
+                .url(client.constructURL(PLATFORM, id, CONNECTIONINFO))
+                .header("Authorization", Credentials.basic(client.user, client.password))
+                .build();
+
+        var response = client.httpClient.newCall(request).execute()
+        client.checkResponse(response.code(), response)
         return response
     }
 
     fun getCapsuleConnectionInformationForAPlatform(id: Int, capsuleCode: String): Response {
-        val response = get(client.baseURL + "/platform/" + id + "/connectioninfo/" + capsuleCode,
-                auth = BasicAuthorization(client.user, client.password),
-                timeout = client.timeout)
-        client.checkResponse(response)
+        val request = Request.Builder()
+                .url(client.constructURL(PLATFORM, id, CONNECTIONINFO, capsuleCode))
+                .header("Authorization", Credentials.basic(client.user, client.password))
+                .build();
+
+        var response = client.httpClient.newCall(request).execute()
+        client.checkResponse(response.code(), response)
         return response
     }
 
     fun getAllEnvVarsForAPlatform(id: Int): Response {
-        val response = get(client.baseURL + "/platform/" + id + "/envvars",
-                auth = BasicAuthorization(client.user, client.password),
-                timeout = client.timeout)
-        client.checkResponse(response)
+        val request = Request.Builder()
+                .url(client.constructURL(PLATFORM, id, ENVVARS))
+                .header("Authorization", Credentials.basic(client.user, client.password))
+                .build();
+
+        var response = client.httpClient.newCall(request).execute()
+        client.checkResponse(response.code(), response)
+        return response
+    }
+
+    fun createEnvVarForAPlatform(id: Int, envVar: EnvVar): Response {
+        val request = Request.Builder()
+                .url(client.constructURL(PLATFORM, id, ENVVARS))
+                .header("Authorization", Credentials.basic(client.user, client.password))
+                .post(RequestBody.create(MediaType.parse("application/json"),
+                        gson.toJson(envVar)))
+                .build();
+
+        var response = client.httpClient.newCall(request).execute()
+        client.checkResponse(response.code(), response)
         return response
     }
 }

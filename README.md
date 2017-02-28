@@ -2,7 +2,7 @@
 
 Saagie Java Client is a library to easily call Saagie Manager. 
 
-All the code is written in [Kotling](https://kotlinlang.org) and uses an HTTPClient ([khttp](http://khttp.readthedocs.io/en/latest/index.html)) to call Saagie Manager.
+All the code is written in [Kotlin](https://kotlinlang.org) and uses an HTTPClient ([okhttp](http://square.github.io/okhttp/)) to call Saagie Manager.
 
 ###:warning: NOT READY FOR PRODUCTION NOW (and not available on Maven Central)
 #Versions

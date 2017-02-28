@@ -15,6 +15,7 @@
  */
 package io.saagie.client
 
+import io.saagie.client.dto.platform.EnvVar
 import io.saagie.client.internal.AbstractSaagieClient
 
 /**
@@ -23,25 +24,29 @@ import io.saagie.client.internal.AbstractSaagieClient
 class SaagieClientRaw(override var baseURL: String = "https://manager.prod.saagie.io/api/v1",
                       override var user: String = "",
                       override var password: String = "",
-                      override var timeout: Double = 20.0) : AbstractSaagieClient() {
+                      override var timeout: Long = 20) : AbstractSaagieClient() {
 
     fun getAllPlatforms(): String {
-        return platformClient.getAllPlatforms().text
+        return platformClient.getAllPlatforms().body().string()
     }
 
     fun getAPlatform(id: Int): String {
-        return platformClient.getAPlatform(id).text
+        return platformClient.getAPlatform(id).body().string()
     }
 
     fun getConnectionInformationForAPlatform(id: Int): String {
-        return platformClient.getConnectionInformationForAPlatform(id).text
+        return platformClient.getConnectionInformationForAPlatform(id).body().string()
     }
 
     fun getCapsuleConnectionInformationForAPlatform(id: Int, capsuleCode: String): String {
-        return platformClient.getCapsuleConnectionInformationForAPlatform(id, capsuleCode).text
+        return platformClient.getCapsuleConnectionInformationForAPlatform(id, capsuleCode).body().string()
     }
 
     fun getAllEnvVarsForAPlatform(id: Int): String {
-        return platformClient.getAllEnvVarsForAPlatform(id).text
+        return platformClient.getAllEnvVarsForAPlatform(id).body().string()
+    }
+
+    fun createEnvVarForAPlatform(id: Int, envVar: EnvVar): String {
+        return platformClient.createEnvVarForAPlatform(id, envVar).body().string()
     }
 }

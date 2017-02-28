@@ -15,7 +15,10 @@
  */
 package io.saagie.client.internal
 
-import khttp.responses.Response
+import okhttp3.OkHttpClient
+import okhttp3.Response
+import java.util.concurrent.TimeUnit
+
 
 /**
  * Created by pierre on 24/02/2017.
@@ -24,13 +27,26 @@ open class AbstractSaagieClient(
         open var baseURL: String = "https://manager.prod.saagie.io/api/v1",
         open var user: String = "",
         open var password: String = "",
-        open var timeout: Double = 20.0
+        open var timeout: Long = 20
 ) {
+
+    val httpClient: OkHttpClient = OkHttpClient.Builder()
+            .connectTimeout(timeout, TimeUnit.SECONDS)
+            .writeTimeout(timeout, TimeUnit.SECONDS)
+            .readTimeout(timeout, TimeUnit.SECONDS)
+            .build();
+
     var platformClient = PlatformClient(this)
 
-    internal fun checkResponse(response: Response) {
-        if (response.statusCode > 299)
-            throw IllegalStateException("\n---------------------\nError during call to API \n - StatusCode :  '" + response.statusCode + "'\n - Message : '" + response.text + "'\n---------------------\n")
+    internal fun checkResponse(statusCode: Int, response: Response) {
+        if (statusCode > 299)
+            throw IllegalStateException("\n---------------------\nError during call to API \n - StatusCode :  '" + statusCode + "'\n - Message : '" + response.body().string() + "'\n---------------------\n")
     }
 
+    internal fun constructURL(vararg args: Any): String {
+        var url = baseURL
+        for (item in args)
+            url += "/" + item
+        return url
+    }
 }

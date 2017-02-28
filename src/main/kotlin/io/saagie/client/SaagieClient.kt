@@ -28,32 +28,32 @@ import io.saagie.client.internal.AbstractSaagieClient
 class SaagieClient(override var baseURL: String = "https://manager.prod.saagie.io/api/v1",
                    override var user: String = "",
                    override var password: String = "",
-                   override var timeout: Double = 20.0) : AbstractSaagieClient() {
+                   override var timeout: Long = 20) : AbstractSaagieClient() {
 
     val mapper = jacksonObjectMapper()
 
     fun getAllPlatforms(): List<Platform>? {
-        val platforms: List<Platform>? = mapper.readValue(platformClient.getAllPlatforms().text)
+        val platforms: List<Platform>? = mapper.readValue(platformClient.getAllPlatforms().body().string())
         return platforms
     }
 
     fun getAPlatform(id: Int): Platform? {
-        val platform: Platform? = mapper.readValue(platformClient.getAPlatform(id).text)
+        val platform: Platform? = mapper.readValue(platformClient.getAPlatform(id).body().string())
         return platform
     }
 
     fun getConnectionInformationForAPlatform(id: Int): List<Capsule>? {
-        val connectionInfo: List<Capsule>? = mapper.readValue(platformClient.getConnectionInformationForAPlatform(id).text)
+        val connectionInfo: List<Capsule>? = mapper.readValue(platformClient.getConnectionInformationForAPlatform(id).body().string())
         return connectionInfo
     }
 
     fun getCapsuleConnectionInformationForAPlatform(id: Int, capsuleCode: String): Capsule? {
-        val capsule: Capsule? = mapper.readValue(platformClient.getCapsuleConnectionInformationForAPlatform(id, capsuleCode).text)
+        val capsule: Capsule? = mapper.readValue(platformClient.getCapsuleConnectionInformationForAPlatform(id, capsuleCode).body().string())
         return capsule
     }
 
     fun getAllEnvVarsForAPlatform(id: Int): List<EnvVar>? {
-        val envVars: List<EnvVar>? = mapper.readValue(platformClient.getAllEnvVarsForAPlatform(id).text)
+        val envVars: List<EnvVar>? = mapper.readValue(platformClient.getAllEnvVarsForAPlatform(id).body().string())
         return envVars
     }
 }

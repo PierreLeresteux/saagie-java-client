@@ -25,25 +25,25 @@ import org.json.JSONObject
 class SaagieClientJson(override var baseURL: String = "https://manager.prod.saagie.io/api/v1",
                        override var user: String = "",
                        override var password: String = "",
-                       override var timeout: Double = 20.0) : AbstractSaagieClient() {
+                       override var timeout: Long = 20) : AbstractSaagieClient() {
 
     fun getAllPlatforms(): JSONArray {
-        return platformClient.getAllPlatforms().jsonArray
+        return JSONArray(platformClient.getAllPlatforms().body().string())
     }
 
     fun getAPlatform(id: Int): JSONObject {
-        return platformClient.getAPlatform(id).jsonObject
+        return JSONObject(platformClient.getAPlatform(id).body().string())
     }
 
     fun getConnectionInformationForAPlatform(id: Int): JSONArray {
-        return platformClient.getConnectionInformationForAPlatform(id).jsonArray
+        return JSONArray(platformClient.getConnectionInformationForAPlatform(id).body().string())
     }
 
     fun getCapsuleConnectionInformationForAPlatform(id: Int, capsuleCode: String): JSONObject {
-        return platformClient.getCapsuleConnectionInformationForAPlatform(id, capsuleCode).jsonObject
+        return JSONObject(platformClient.getCapsuleConnectionInformationForAPlatform(id, capsuleCode).body().string())
     }
 
     fun getAllEnvVarsForAPlatform(id: Int): JSONArray {
-        return platformClient.getAllEnvVarsForAPlatform(id).jsonArray
+        return JSONArray(platformClient.getAllEnvVarsForAPlatform(id).body().string())
     }
 }
