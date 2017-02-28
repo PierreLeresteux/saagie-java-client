@@ -32,28 +32,27 @@ class SaagieClient(override var baseURL: String = "https://manager.prod.saagie.i
 
     val mapper = jacksonObjectMapper()
 
-    fun getAllPlatforms(): List<Platform>? {
-        val platforms: List<Platform>? = mapper.readValue(platformClient.getAllPlatforms().body().string())
-        return platforms
+    fun getAllPlatforms(): List<Platform> {
+        return mapper.readValue(platformClient.getAllPlatforms().body().string())
     }
 
-    fun getAPlatform(id: Int): Platform? {
-        val platform: Platform? = mapper.readValue(platformClient.getAPlatform(id).body().string())
-        return platform
+    fun getAPlatform(id: Int): Platform {
+        return mapper.readValue(platformClient.getAPlatform(id).body().string())
     }
 
-    fun getConnectionInformationForAPlatform(id: Int): List<Capsule>? {
-        val connectionInfo: List<Capsule>? = mapper.readValue(platformClient.getConnectionInformationForAPlatform(id).body().string())
-        return connectionInfo
+    fun getConnectionInformationForAPlatform(id: Int): List<Capsule> {
+        return mapper.readValue(platformClient.getConnectionInformationForAPlatform(id).body().string())
     }
 
-    fun getCapsuleConnectionInformationForAPlatform(id: Int, capsuleCode: String): Capsule? {
-        val capsule: Capsule? = mapper.readValue(platformClient.getCapsuleConnectionInformationForAPlatform(id, capsuleCode).body().string())
-        return capsule
+    fun getCapsuleConnectionInformationForAPlatform(id: Int, capsuleCode: String): Capsule {
+        return mapper.readValue(platformClient.getCapsuleConnectionInformationForAPlatform(id, capsuleCode).body().string())
     }
 
     fun getAllEnvVarsForAPlatform(id: Int): List<EnvVar>? {
-        val envVars: List<EnvVar>? = mapper.readValue(platformClient.getAllEnvVarsForAPlatform(id).body().string())
-        return envVars
+        return mapper.readValue(platformClient.getAllEnvVarsForAPlatform(id).body().string())
+    }
+
+    fun createEnvVarForAPlatform(id: Int, envVar: EnvVar): EnvVar {
+        return mapper.readValue(platformClient.createEnvVarForAPlatform(id, envVar).body().string())
     }
 }

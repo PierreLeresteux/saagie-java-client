@@ -15,6 +15,7 @@
  */
 package io.saagie.client
 
+import io.saagie.client.dto.platform.EnvVar
 import io.saagie.client.internal.AbstractSaagieClient
 import org.json.JSONArray
 import org.json.JSONObject
@@ -45,5 +46,9 @@ class SaagieClientJson(override var baseURL: String = "https://manager.prod.saag
 
     fun getAllEnvVarsForAPlatform(id: Int): JSONArray {
         return JSONArray(platformClient.getAllEnvVarsForAPlatform(id).body().string())
+    }
+
+    fun createEnvVarForAPlatform(id: Int, envVar: EnvVar): JSONObject {
+        return JSONObject(platformClient.createEnvVarForAPlatform(id, envVar).body().string())
     }
 }
