@@ -15,8 +15,8 @@
  */
 package io.saagie.client
 
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.fasterxml.jackson.module.kotlin.readValue
+import com.github.salomonbrys.kotson.fromJson
+import com.google.gson.Gson
 import io.saagie.client.dto.platform.Capsule
 import io.saagie.client.dto.platform.EnvVar
 import io.saagie.client.dto.platform.Platform
@@ -30,29 +30,29 @@ class SaagieClient(override var baseURL: String = "https://manager.prod.saagie.i
                    override var password: String = "",
                    override var timeout: Long = 20) : AbstractSaagieClient() {
 
-    val mapper = jacksonObjectMapper()
+    val gson = Gson()
 
     fun getAllPlatforms(): List<Platform> {
-        return mapper.readValue(platformClient.getAllPlatforms().body().string())
+        return gson.fromJson<List<Platform>>(platformClient.getAllPlatforms().body().charStream())
     }
 
     fun getAPlatform(id: Int): Platform {
-        return mapper.readValue(platformClient.getAPlatform(id).body().string())
+        return gson.fromJson(platformClient.getAPlatform(id).body().string())
     }
 
     fun getConnectionInformationForAPlatform(id: Int): List<Capsule> {
-        return mapper.readValue(platformClient.getConnectionInformationForAPlatform(id).body().string())
+        return gson.fromJson<List<Capsule>>(platformClient.getConnectionInformationForAPlatform(id).body().string())
     }
 
     fun getCapsuleConnectionInformationForAPlatform(id: Int, capsuleCode: String): Capsule {
-        return mapper.readValue(platformClient.getCapsuleConnectionInformationForAPlatform(id, capsuleCode).body().string())
+        return gson.fromJson<Capsule>(platformClient.getCapsuleConnectionInformationForAPlatform(id, capsuleCode).body().string())
     }
 
-    fun getAllEnvVarsForAPlatform(id: Int): List<EnvVar>? {
-        return mapper.readValue(platformClient.getAllEnvVarsForAPlatform(id).body().string())
+    fun getAllEnvVarsForAPlatform(id: Int): List<EnvVar> {
+        return gson.fromJson<List<EnvVar>>(platformClient.getAllEnvVarsForAPlatform(id).body().string())
     }
 
     fun createEnvVarForAPlatform(id: Int, envVar: EnvVar): EnvVar {
-        return mapper.readValue(platformClient.createEnvVarForAPlatform(id, envVar).body().string())
+        return gson.fromJson(platformClient.createEnvVarForAPlatform(id, envVar).body().string())
     }
 }

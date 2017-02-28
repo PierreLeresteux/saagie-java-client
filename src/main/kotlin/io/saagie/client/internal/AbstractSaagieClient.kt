@@ -38,9 +38,9 @@ open class AbstractSaagieClient(
 
     var platformClient = PlatformClient(this)
 
-    internal fun checkResponse(statusCode: Int, response: Response) {
-        if (statusCode > 299)
-            throw IllegalStateException("\n---------------------\nError during call to API \n - StatusCode :  '" + statusCode + "'\n - Message : '" + response.body().string() + "'\n---------------------\n")
+    internal fun checkResponse(response: Response) {
+        if (response.code() > 299)
+            throw IllegalStateException("\n---------------------\nError during call to API \n - StatusCode :  '" + response.code() + "'\n - Message : '" + response.body().string() + "'\n---------------------\n")
     }
 
     internal fun constructURL(vararg args: Any): String {

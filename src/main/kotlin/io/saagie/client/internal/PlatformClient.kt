@@ -36,64 +36,76 @@ open class PlatformClient(var client: AbstractSaagieClient) {
                 .build();
 
         var response = client.httpClient.newCall(request).execute()
-        client.checkResponse(response.code(), response)
+        client.checkResponse(response)
         return response
     }
 
-    fun getAPlatform(id: Int): Response {
+    fun getAPlatform(platformId: Int): Response {
         val request = Request.Builder()
-                .url(client.constructURL(PLATFORM, id))
+                .url(client.constructURL(PLATFORM, platformId))
                 .header("Authorization", Credentials.basic(client.user, client.password))
                 .build();
 
         var response = client.httpClient.newCall(request).execute()
-        client.checkResponse(response.code(), response)
+        client.checkResponse(response)
         return response
     }
 
-    fun getConnectionInformationForAPlatform(id: Int): Response {
+    fun getConnectionInformationForAPlatform(platformId: Int): Response {
         val request = Request.Builder()
-                .url(client.constructURL(PLATFORM, id, CONNECTIONINFO))
+                .url(client.constructURL(PLATFORM, platformId, CONNECTIONINFO))
                 .header("Authorization", Credentials.basic(client.user, client.password))
                 .build();
 
         var response = client.httpClient.newCall(request).execute()
-        client.checkResponse(response.code(), response)
+        client.checkResponse(response)
         return response
     }
 
-    fun getCapsuleConnectionInformationForAPlatform(id: Int, capsuleCode: String): Response {
+    fun getCapsuleConnectionInformationForAPlatform(platformId: Int, capsuleCode: String): Response {
         val request = Request.Builder()
-                .url(client.constructURL(PLATFORM, id, CONNECTIONINFO, capsuleCode))
+                .url(client.constructURL(PLATFORM, platformId, CONNECTIONINFO, capsuleCode))
                 .header("Authorization", Credentials.basic(client.user, client.password))
                 .build();
 
         var response = client.httpClient.newCall(request).execute()
-        client.checkResponse(response.code(), response)
+        client.checkResponse(response)
         return response
     }
 
-    fun getAllEnvVarsForAPlatform(id: Int): Response {
+    fun getAllEnvVarsForAPlatform(platformId: Int): Response {
         val request = Request.Builder()
-                .url(client.constructURL(PLATFORM, id, ENVVARS))
+                .url(client.constructURL(PLATFORM, platformId, ENVVARS))
                 .header("Authorization", Credentials.basic(client.user, client.password))
                 .build();
 
         var response = client.httpClient.newCall(request).execute()
-        client.checkResponse(response.code(), response)
+        client.checkResponse(response)
         return response
     }
 
-    fun createEnvVarForAPlatform(id: Int, envVar: EnvVar): Response {
+    fun createEnvVarForAPlatform(platformId: Int, envVar: EnvVar): Response {
         val request = Request.Builder()
-                .url(client.constructURL(PLATFORM, id, ENVVARS))
+                .url(client.constructURL(PLATFORM, platformId, ENVVARS))
                 .header("Authorization", Credentials.basic(client.user, client.password))
                 .post(RequestBody.create(MediaType.parse("application/json"),
                         gson.toJson(envVar)))
                 .build();
 
         var response = client.httpClient.newCall(request).execute()
-        client.checkResponse(response.code(), response)
+        client.checkResponse(response)
+        return response
+    }
+
+    fun deleteEnvVarForAPlatform(platformId: Int, envvarId: Int): Response {
+        val request = Request.Builder()
+                .url(client.constructURL(PLATFORM, platformId, ENVVARS, envvarId))
+                .header("Authorization", Credentials.basic(client.user, client.password))
+                .delete()
+                .build();
+
+        var response = client.httpClient.newCall(request).execute()
+        client.checkResponse(response)
         return response
     }
 }
