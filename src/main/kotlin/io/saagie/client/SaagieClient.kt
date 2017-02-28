@@ -33,23 +33,23 @@ class SaagieClient(override var baseURL: String = "https://manager.prod.saagie.i
     val gson = Gson()
 
     fun getAllPlatforms(): List<Platform> {
-        return gson.fromJson<List<Platform>>(platformClient.getAllPlatforms().body().charStream())
+        return gson.fromJson(platformClient.getAllPlatforms().body().charStream())
     }
 
     fun getAPlatform(id: Int): Platform {
         return gson.fromJson(platformClient.getAPlatform(id).body().string())
     }
 
-    fun getConnectionInformationForAPlatform(id: Int): List<Capsule> {
-        return gson.fromJson<List<Capsule>>(platformClient.getConnectionInformationForAPlatform(id).body().string())
+    fun getAllCapsulesForAPlatorm(id: Int): List<Capsule> {
+        return gson.fromJson(platformClient.getAllCapsulesForAPlatorm(id).body().string())
     }
 
-    fun getCapsuleConnectionInformationForAPlatform(id: Int, capsuleCode: String): Capsule {
-        return gson.fromJson<Capsule>(platformClient.getCapsuleConnectionInformationForAPlatform(id, capsuleCode).body().string())
+    fun getACapsuleForAPlatform(id: Int, capsuleCode: String): Capsule {
+        return gson.fromJson(platformClient.getACapsuleForAPlatform(id, capsuleCode).body().string())
     }
 
     fun getAllEnvVarsForAPlatform(id: Int): List<EnvVar> {
-        return gson.fromJson<List<EnvVar>>(platformClient.getAllEnvVarsForAPlatform(id).body().string())
+        return gson.fromJson(platformClient.getAllEnvVarsForAPlatform(id).body().string())
     }
 
     fun createEnvVarForAPlatform(id: Int, envVar: EnvVar): EnvVar {

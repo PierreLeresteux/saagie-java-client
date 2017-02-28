@@ -51,7 +51,7 @@ open class PlatformClient(var client: AbstractSaagieClient) {
         return response
     }
 
-    fun getConnectionInformationForAPlatform(platformId: Int): Response {
+    fun getAllCapsulesForAPlatorm(platformId: Int): Response {
         val request = Request.Builder()
                 .url(client.constructURL(PLATFORM, platformId, CONNECTIONINFO))
                 .header("Authorization", Credentials.basic(client.user, client.password))
@@ -62,7 +62,7 @@ open class PlatformClient(var client: AbstractSaagieClient) {
         return response
     }
 
-    fun getCapsuleConnectionInformationForAPlatform(platformId: Int, capsuleCode: String): Response {
+    fun getACapsuleForAPlatform(platformId: Int, capsuleCode: String): Response {
         val request = Request.Builder()
                 .url(client.constructURL(PLATFORM, platformId, CONNECTIONINFO, capsuleCode))
                 .header("Authorization", Credentials.basic(client.user, client.password))

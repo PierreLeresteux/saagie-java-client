@@ -34,12 +34,12 @@ class SaagieClientRaw(override var baseURL: String = "https://manager.prod.saagi
         return platformClient.getAPlatform(id).body().string()
     }
 
-    fun getConnectionInformationForAPlatform(id: Int): String {
-        return platformClient.getConnectionInformationForAPlatform(id).body().string()
+    fun getAllCapsulesForAPlatorm(id: Int): String {
+        return platformClient.getAllCapsulesForAPlatorm(id).body().string()
     }
 
-    fun getCapsuleConnectionInformationForAPlatform(id: Int, capsuleCode: String): String {
-        return platformClient.getCapsuleConnectionInformationForAPlatform(id, capsuleCode).body().string()
+    fun getACapsuleForAPlatform(id: Int, capsuleCode: String): String {
+        return platformClient.getACapsuleForAPlatform(id, capsuleCode).body().string()
     }
 
     fun getAllEnvVarsForAPlatform(id: Int): String {

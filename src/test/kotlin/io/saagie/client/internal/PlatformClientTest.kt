@@ -31,7 +31,7 @@ internal class PlatformClientTest : Spek({
     var platformClient = PlatformClient(AbstractSaagieClient())
     val mockServer = SaagieManagerMockServer()
 
-    describe("a group") {
+    describe("in a context of a PlatformClient") {
 
         beforeGroup {
             mockServer.init()
@@ -57,17 +57,17 @@ internal class PlatformClientTest : Spek({
 
         on("call connection information for a platform") {
             it("should return the list of connection information for a platform") {
-                val response = platformClient.getConnectionInformationForAPlatform(2)
+                val response = platformClient.getAllCapsulesForAPlatorm(2)
                 response.code() shouldEqualTo 200
-                response.body().string() shouldEqualTo PlatformConstants.CONNECTIONINFORMATION.value
+                response.body().string() shouldEqualTo PlatformConstants.ALL_CAPSULES.value
             }
         }
 
         on("call connection information for a platform and a capsulecode") {
             it("should return the connection information for a platform and a capsulecode") {
-                val response = platformClient.getCapsuleConnectionInformationForAPlatform(2, "mongo")
+                val response = platformClient.getACapsuleForAPlatform(2, "mongo")
                 response.code() shouldEqualTo 200
-                response.body().string() shouldEqualTo PlatformConstants.MONGO_CONNECTIONINFORMATION.value
+                response.body().string() shouldEqualTo PlatformConstants.MONGO_CAPSULE.value
             }
         }
 

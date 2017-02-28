@@ -36,12 +36,12 @@ class SaagieClientJson(override var baseURL: String = "https://manager.prod.saag
         return JSONObject(platformClient.getAPlatform(id).body().string())
     }
 
-    fun getConnectionInformationForAPlatform(id: Int): JSONArray {
-        return JSONArray(platformClient.getConnectionInformationForAPlatform(id).body().string())
+    fun getAllCapsulesForAPlatorm(id: Int): JSONArray {
+        return JSONArray(platformClient.getAllCapsulesForAPlatorm(id).body().string())
     }
 
-    fun getCapsuleConnectionInformationForAPlatform(id: Int, capsuleCode: String): JSONObject {
-        return JSONObject(platformClient.getCapsuleConnectionInformationForAPlatform(id, capsuleCode).body().string())
+    fun getACapsuleForAPlatform(id: Int, capsuleCode: String): JSONObject {
+        return JSONObject(platformClient.getACapsuleForAPlatform(id, capsuleCode).body().string())
     }
 
     fun getAllEnvVarsForAPlatform(id: Int): JSONArray {
