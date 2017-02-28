@@ -52,7 +52,23 @@ class SaagieClientJson(override var baseURL: String = "https://manager.prod.saag
         return JSONObject(platformClient.createEnvVarForAPlatform(platformId, envVar).body().string())
     }
 
+    fun createEnvVarForAPlatform(envVar: EnvVar): JSONObject {
+        return JSONObject(platformClient.createEnvVarForAPlatform(envVar.platformId!!, envVar).body().string())
+    }
+
     fun deleteEnvVarForAPlatform(platformId: Int, envvarId: Int) {
         platformClient.deleteEnvVarForAPlatform(platformId, envvarId).body().string()
+    }
+
+    fun deleteEnvVarForAPlatform(envVar: EnvVar) {
+        platformClient.deleteEnvVarForAPlatform(envVar.platformId!!, envVar.id!!).body().string()
+    }
+
+    fun editEnvVarForAPlatform(platformId: Int, envvarId: Int, envVar: EnvVar): JSONObject {
+        return JSONObject(platformClient.editEnvVarForAPlatform(platformId, envvarId, envVar).body().string())
+    }
+
+    fun editEnvVarForAPlatform(envVar: EnvVar): JSONObject {
+        return JSONObject(platformClient.editEnvVarForAPlatform(envVar.platformId!!, envVar.id!!, envVar).body().string())
     }
 }

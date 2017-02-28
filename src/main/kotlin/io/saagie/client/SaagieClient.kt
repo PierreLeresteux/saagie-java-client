@@ -56,7 +56,23 @@ class SaagieClient(override var baseURL: String = "https://manager.prod.saagie.i
         return gson.fromJson(platformClient.createEnvVarForAPlatform(platformId, envVar).body().string())
     }
 
+    fun createEnvVarForAPlatform(envVar: EnvVar): EnvVar {
+        return gson.fromJson(platformClient.createEnvVarForAPlatform(envVar.platformId!!, envVar).body().string())
+    }
+
     fun deleteEnvVarForAPlatform(platformId: Int, envvarId: Int) {
         platformClient.deleteEnvVarForAPlatform(platformId, envvarId).body().string()
+    }
+
+    fun deleteEnvVarForAPlatform(envVar: EnvVar) {
+        platformClient.deleteEnvVarForAPlatform(envVar.platformId!!, envVar.id!!).body().string()
+    }
+
+    fun editEnvVarForAPlatform(platformId: Int, envvarId: Int, envVar: EnvVar): EnvVar {
+        return gson.fromJson(platformClient.editEnvVarForAPlatform(platformId, envvarId, envVar).body().string())
+    }
+
+    fun editEnvVarForAPlatform(envVar: EnvVar): EnvVar {
+        return gson.fromJson(platformClient.editEnvVarForAPlatform(envVar.platformId!!, envVar.id!!, envVar).body().string())
     }
 }

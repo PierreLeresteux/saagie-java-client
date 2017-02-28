@@ -101,6 +101,14 @@ internal class PlatformClientTest : Spek({
             }
         }
 
+        on("call update an envVar for a platform") {
+            it("should return the updated envvar for a platform") {
+                val response = platformClient.editEnvVarForAPlatform(2, 1, gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value))
+                response.code() shouldEqualTo 200
+                response.body().string() shouldEqualTo PlatformConstants.CREATED_ENVVAR.value
+            }
+        }
+
         afterGroup {
             mockServer.shutdown()
         }

@@ -50,7 +50,23 @@ class SaagieClientRaw(override var baseURL: String = "https://manager.prod.saagi
         return platformClient.createEnvVarForAPlatform(platformId, envVar).body().string()
     }
 
+    fun createEnvVarForAPlatform(envVar: EnvVar): String {
+        return platformClient.createEnvVarForAPlatform(envVar.platformId!!, envVar).body().string()
+    }
+
     fun deleteEnvVarForAPlatform(platformId: Int, envvarId: Int) {
         platformClient.deleteEnvVarForAPlatform(platformId, envvarId).body().string()
+    }
+
+    fun deleteEnvVarForAPlatform(envVar: EnvVar) {
+        platformClient.deleteEnvVarForAPlatform(envVar.platformId!!, envVar.id!!).body().string()
+    }
+
+    fun editEnvVarForAPlatform(platformId: Int, envvarId: Int, envVar: EnvVar): String {
+        return platformClient.editEnvVarForAPlatform(platformId, envvarId, envVar).body().string()
+    }
+
+    fun editEnvVarForAPlatform(envVar: EnvVar): String {
+        return platformClient.editEnvVarForAPlatform(envVar.platformId!!, envVar.id!!, envVar).body().string()
     }
 }

@@ -108,4 +108,17 @@ open class PlatformClient(var client: AbstractSaagieClient) {
         client.checkResponse(response)
         return response
     }
+
+    fun editEnvVarForAPlatform(platformId: Int, envvarId: Int, envVar: EnvVar): Response {
+        val request = Request.Builder()
+                .url(client.constructURL(PLATFORM, platformId, ENVVARS, envvarId))
+                .header("Authorization", Credentials.basic(client.user, client.password))
+                .put(RequestBody.create(MediaType.parse("application/json"),
+                        gson.toJson(envVar)))
+                .build();
+
+        var response = client.httpClient.newCall(request).execute()
+        client.checkResponse(response)
+        return response
+    }
 }

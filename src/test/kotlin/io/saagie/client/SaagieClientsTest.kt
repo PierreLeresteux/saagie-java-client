@@ -101,6 +101,41 @@ internal class SaagieClientsTest : Spek({
             }
         }
 
+        on("call create an envVar for a platform without platformId") {
+            it("should return the created envvar for a platform") {
+                val rawResponse = saagieClientRaw.createEnvVarForAPlatform(gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value))
+                rawResponse shouldEqualTo PlatformConstants.CREATED_ENVVAR.value
+                val jsonResponse = saagieClientJson.createEnvVarForAPlatform(gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value))
+                jsonResponse.toString() shouldEqualTo JSONObject(PlatformConstants.CREATED_ENVVAR.value).toString()
+                val response = saagieClient.createEnvVarForAPlatform(gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value))
+                response shouldEqual gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value)
+            }
+        }
+
+        on("call update an envVar for a platform") {
+            it("should return the updated envvar for a platform") {
+                val rawResponse = saagieClientRaw.editEnvVarForAPlatform(2, 1, gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value))
+                rawResponse shouldEqualTo PlatformConstants.CREATED_ENVVAR.value
+                val jsonResponse = saagieClientJson.editEnvVarForAPlatform(2, 1, gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value))
+                jsonResponse.toString() shouldEqualTo JSONObject(PlatformConstants.CREATED_ENVVAR.value).toString()
+                val response = saagieClient.editEnvVarForAPlatform(2, 1, gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value))
+                response shouldEqual gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value)
+            }
+        }
+
+        on("call update an envVar for a platform without platformId") {
+            it("should return the updated envvar for a platform") {
+                val rawResponse = saagieClientRaw.editEnvVarForAPlatform(gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value))
+                rawResponse shouldEqualTo PlatformConstants.CREATED_ENVVAR.value
+                val jsonResponse = saagieClientJson.editEnvVarForAPlatform(gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value))
+                jsonResponse.toString() shouldEqualTo JSONObject(PlatformConstants.CREATED_ENVVAR.value).toString()
+                val response = saagieClient.editEnvVarForAPlatform(gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value))
+                response shouldEqual gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value)
+            }
+        }
+
+
+
         afterGroup {
             mockServer.shutdown()
         }
