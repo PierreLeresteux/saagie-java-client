@@ -26,6 +26,7 @@ class SaagieClientRaw(override var baseURL: String = "https://manager.prod.saagi
                       override var password: String = "",
                       override var timeout: Long = 20) : AbstractSaagieClient() {
 
+    //PLATFORM
     fun getAllPlatforms(): String {
         return platformClient.getAllPlatforms().body().string()
     }
@@ -68,5 +69,10 @@ class SaagieClientRaw(override var baseURL: String = "https://manager.prod.saagi
 
     fun editEnvVarForAPlatform(envVar: EnvVar): String {
         return platformClient.editEnvVarForAPlatform(envVar.platformId!!, envVar.id!!, envVar).body().string()
+    }
+
+    // JOB
+    fun getAllJobsForAPlatform(platformId: Int): String {
+        return jobClient.getAllJobsForAPlatform(platformId).body().string()
     }
 }

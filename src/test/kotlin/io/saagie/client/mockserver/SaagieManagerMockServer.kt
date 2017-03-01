@@ -48,6 +48,7 @@ class SaagieManagerMockServer {
                     baseUrl.encodedPath() + "/platform/2/envvars/1" -> {
                         return MockResponse().setResponseCode(200).setBody(PlatformConstants.CREATED_ENVVAR.value)
                     }
+                    baseUrl.encodedPath() + "/platform/2/job" -> return MockResponse().setResponseCode(200).setBody(ClientConstants.ALL_JOBS.value)
                 }
                 return MockResponse().setResponseCode(404)
             }

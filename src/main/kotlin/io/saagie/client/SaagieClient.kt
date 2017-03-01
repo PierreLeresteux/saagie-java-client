@@ -17,6 +17,7 @@ package io.saagie.client
 
 import com.github.salomonbrys.kotson.fromJson
 import com.google.gson.Gson
+import io.saagie.client.dto.job.Job
 import io.saagie.client.dto.platform.Capsule
 import io.saagie.client.dto.platform.EnvVar
 import io.saagie.client.dto.platform.Platform
@@ -32,6 +33,7 @@ class SaagieClient(override var baseURL: String = "https://manager.prod.saagie.i
 
     val gson = Gson()
 
+    // PLATFORM
     fun getAllPlatforms(): List<Platform> {
         return gson.fromJson(platformClient.getAllPlatforms().body().charStream())
     }
@@ -74,5 +76,10 @@ class SaagieClient(override var baseURL: String = "https://manager.prod.saagie.i
 
     fun editEnvVarForAPlatform(envVar: EnvVar): EnvVar {
         return gson.fromJson(platformClient.editEnvVarForAPlatform(envVar.platformId!!, envVar.id!!, envVar).body().string())
+    }
+
+    // JOB
+    fun getAllJobsForAPlatform(platformId: Int): List<Job> {
+        return gson.fromJson(jobClient.getAllJobsForAPlatform(platformId).body().string())
     }
 }

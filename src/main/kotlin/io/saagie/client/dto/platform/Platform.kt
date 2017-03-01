@@ -20,7 +20,7 @@ package io.saagie.client.dto.platform
  * Created by pierre on 24/02/2017.
  */
 data class Platform(
-        var id: Int,
-        var name: String,
-        var capsules: List<Capsule>
+        val id: Int,
+        val name: String,
+        val capsules: List<Capsule>
 )

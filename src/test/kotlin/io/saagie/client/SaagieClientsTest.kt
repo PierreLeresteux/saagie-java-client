@@ -20,6 +20,7 @@ import com.google.gson.Gson
 import io.saagie.client.dto.platform.Capsule
 import io.saagie.client.dto.platform.EnvVar
 import io.saagie.client.dto.platform.Platform
+import io.saagie.client.mockserver.ClientConstants
 import io.saagie.client.mockserver.PlatformConstants
 import io.saagie.client.mockserver.SaagieManagerMockServer
 import org.amshove.kluent.shouldEqual
@@ -149,7 +150,16 @@ internal class SaagieClientsTest : Spek({
             }
         }
 
-
+        on("call all jobs") {
+            it("should return the list of all jobs") {
+                val rawResponse = saagieClientRaw.getAllJobsForAPlatform(2)
+                rawResponse shouldEqualTo ClientConstants.ALL_JOBS.value
+                val jsonResponse = saagieClientJson.getAllJobsForAPlatform(2)
+                jsonResponse.toString() shouldEqualTo JSONArray(ClientConstants.ALL_JOBS.value).toString()
+                val response = saagieClient.getAllJobsForAPlatform(2)
+                response shouldEqual gson.fromJson<List<Platform>>(ClientConstants.ALL_JOBS.value)
+            }
+        }
 
         afterGroup {
             mockServer.shutdown()

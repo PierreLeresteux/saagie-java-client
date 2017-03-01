@@ -37,6 +37,7 @@ open class AbstractSaagieClient(
             .build();
 
     var platformClient = PlatformClient(this)
+    var jobClient = JobClient(this)
 
     internal fun checkResponse(response: Response) {
         if (response.code() > 299)

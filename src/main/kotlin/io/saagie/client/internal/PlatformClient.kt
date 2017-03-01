@@ -35,7 +35,7 @@ open class PlatformClient(var client: AbstractSaagieClient) {
                 .header("Authorization", Credentials.basic(client.user, client.password))
                 .build();
 
-        var response = client.httpClient.newCall(request).execute()
+        val response = client.httpClient.newCall(request).execute()
         client.checkResponse(response)
         return response
     }
@@ -46,7 +46,7 @@ open class PlatformClient(var client: AbstractSaagieClient) {
                 .header("Authorization", Credentials.basic(client.user, client.password))
                 .build();
 
-        var response = client.httpClient.newCall(request).execute()
+        val response = client.httpClient.newCall(request).execute()
         client.checkResponse(response)
         return response
     }
@@ -57,7 +57,7 @@ open class PlatformClient(var client: AbstractSaagieClient) {
                 .header("Authorization", Credentials.basic(client.user, client.password))
                 .build();
 
-        var response = client.httpClient.newCall(request).execute()
+        val response = client.httpClient.newCall(request).execute()
         client.checkResponse(response)
         return response
     }
@@ -68,7 +68,7 @@ open class PlatformClient(var client: AbstractSaagieClient) {
                 .header("Authorization", Credentials.basic(client.user, client.password))
                 .build();
 
-        var response = client.httpClient.newCall(request).execute()
+        val response = client.httpClient.newCall(request).execute()
         client.checkResponse(response)
         return response
     }
@@ -79,7 +79,7 @@ open class PlatformClient(var client: AbstractSaagieClient) {
                 .header("Authorization", Credentials.basic(client.user, client.password))
                 .build();
 
-        var response = client.httpClient.newCall(request).execute()
+        val response = client.httpClient.newCall(request).execute()
         client.checkResponse(response)
         return response
     }
@@ -92,7 +92,7 @@ open class PlatformClient(var client: AbstractSaagieClient) {
                         gson.toJson(envVar)))
                 .build();
 
-        var response = client.httpClient.newCall(request).execute()
+        val response = client.httpClient.newCall(request).execute()
         client.checkResponse(response)
         return response
     }
@@ -104,7 +104,7 @@ open class PlatformClient(var client: AbstractSaagieClient) {
                 .delete()
                 .build();
 
-        var response = client.httpClient.newCall(request).execute()
+        val response = client.httpClient.newCall(request).execute()
         client.checkResponse(response)
         return response
     }
@@ -117,7 +117,7 @@ open class PlatformClient(var client: AbstractSaagieClient) {
                         gson.toJson(envVar)))
                 .build();
 
-        var response = client.httpClient.newCall(request).execute()
+        val response = client.httpClient.newCall(request).execute()
         client.checkResponse(response)
         return response
     }

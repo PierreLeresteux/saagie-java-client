@@ -19,8 +19,8 @@ package io.saagie.client.dto.platform
  * Created by pierre on 24/02/2017.
  */
 data class InternalExternalInfo(
-        var name: String,
-        var url: String?,
-        var link: Boolean?,
-        var instance: List<Instance>?
+        val name: String,
+        val url: String?,
+        val link: Boolean?,
+        val instance: List<Instance>?
 )

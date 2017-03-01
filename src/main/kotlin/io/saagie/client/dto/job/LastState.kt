@@ -13,16 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.saagie.client.dto.platform
+package io.saagie.client.dto.job
 
 /**
- * Created by pierre on 24/02/2017.
+ * Created by pierre on 01/03/2017.
  */
-data class Capsule(
-        val code: String,
-        val version: String?,
-        val platformId: String,
-        val internal: List<InternalExternalInfo>?,
-        val external: List<InternalExternalInfo>?
-
+data class LastState(
+        val id: Int,
+        val state: String,
+        val date: String,
+        val lastTaskStatus: String,
+        val lastTaskId: String
 )

@@ -28,6 +28,7 @@ class SaagieClientJson(override var baseURL: String = "https://manager.prod.saag
                        override var password: String = "",
                        override var timeout: Long = 20) : AbstractSaagieClient() {
 
+    // PLATFORM
     fun getAllPlatforms(): JSONArray {
         return JSONArray(platformClient.getAllPlatforms().body().string())
     }
@@ -70,5 +71,10 @@ class SaagieClientJson(override var baseURL: String = "https://manager.prod.saag
 
     fun editEnvVarForAPlatform(envVar: EnvVar): JSONObject {
         return JSONObject(platformClient.editEnvVarForAPlatform(envVar.platformId!!, envVar.id!!, envVar).body().string())
+    }
+
+    // JOB
+    fun getAllJobsForAPlatform(platformId: Int): JSONArray {
+        return JSONArray(jobClient.getAllJobsForAPlatform(platformId).body().string())
     }
 }

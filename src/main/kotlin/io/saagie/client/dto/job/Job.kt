@@ -13,16 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.saagie.client.dto.platform
+package io.saagie.client.dto.job
+
+import io.saagie.client.dto.workflow.Workflow
 
 /**
- * Created by pierre on 24/02/2017.
+ * Created by pierre on 01/03/2017.
  */
-data class Capsule(
-        val code: String,
-        val version: String?,
-        val platformId: String,
-        val internal: List<InternalExternalInfo>?,
-        val external: List<InternalExternalInfo>?
-
+data class Job(
+        val id: Int?,
+        val capsule_code: String,
+        val current: Version?,
+        val version: List<Version>?,
+        val streaming: Boolean?,
+        val category: String,
+        val name: String,
+        val platformId: Int,
+        val manual: Boolean?,
+        val schedule: String?,
+        val retry: String?,
+        val last_state: LastState?,
+        val workflow: List<Workflow>?,
+        val deletable: Boolean?,
+        val description: String?
 )
