@@ -30,6 +30,7 @@ data class Job(
         val name: String,
         val platformId: Int,
         val manual: Boolean?,
+        val email: String?,
         val schedule: String?,
         val retry: String?,
         val last_state: LastState?,

@@ -17,6 +17,7 @@ package io.saagie.client
 
 import com.github.salomonbrys.kotson.fromJson
 import com.google.gson.Gson
+import io.saagie.client.dto.job.Job
 import io.saagie.client.dto.platform.Capsule
 import io.saagie.client.dto.platform.EnvVar
 import io.saagie.client.dto.platform.Platform
@@ -157,7 +158,7 @@ internal class SaagieClientsTest : Spek({
                 val jsonResponse = saagieClientJson.getAllJobsForAPlatform(2)
                 jsonResponse.toString() shouldEqualTo JSONArray(ClientConstants.ALL_JOBS.value).toString()
                 val response = saagieClient.getAllJobsForAPlatform(2)
-                response shouldEqual gson.fromJson<List<Platform>>(ClientConstants.ALL_JOBS.value)
+                response shouldEqual gson.fromJson<List<Job>>(ClientConstants.ALL_JOBS.value)
             }
         }
 
