@@ -46,6 +46,8 @@ class SaagieManagerMockServer {
                         return MockResponse().setResponseCode(200).setBody(PlatformConstants.ALL_ENVVARS.value)
                     }
                     baseUrl.encodedPath() + "/platform/2/envvars/1" -> {
+                        if (request.method == "DELETE")
+                            return MockResponse().setResponseCode(204)
                         return MockResponse().setResponseCode(200).setBody(PlatformConstants.CREATED_ENVVAR.value)
                     }
                     baseUrl.encodedPath() + "/platform/2/job" -> return MockResponse().setResponseCode(200).setBody(ClientConstants.ALL_JOBS.value)
