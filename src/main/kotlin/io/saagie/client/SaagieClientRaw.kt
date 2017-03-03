@@ -75,4 +75,8 @@ class SaagieClientRaw(override var baseURL: String = "https://manager.prod.saagi
     fun getAllJobsForAPlatform(platformId: Int): String {
         return jobClient.getAllJobsForAPlatform(platformId).body().string()
     }
+
+    fun getAJobForAPlatform(platformId: Int, jobId: Int): String {
+        return jobClient.getAJobForAPlatform(platformId, jobId).body().string()
+    }
 }

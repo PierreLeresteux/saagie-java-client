@@ -15,7 +15,6 @@
  */
 package io.saagie.client.internal
 
-import com.google.gson.Gson
 import okhttp3.Credentials
 import okhttp3.Request
 import okhttp3.Response
@@ -27,11 +26,21 @@ open class JobClient(var client: AbstractSaagieClient) {
 
     val PLATFORM = "platform"
     val JOB = "job"
-    val gson = Gson()
 
     fun getAllJobsForAPlatform(platformId: Int): Response {
         val request = Request.Builder()
                 .url(client.constructURL(PLATFORM, platformId, JOB))
+                .header("Authorization", Credentials.basic(client.user, client.password))
+                .build();
+
+        val response = client.httpClient.newCall(request).execute()
+        client.checkResponse(response)
+        return response
+    }
+
+    fun getAJobForAPlatform(platformId: Int, jobId: Int): Response {
+        val request = Request.Builder()
+                .url(client.constructURL(PLATFORM, platformId, JOB, jobId))
                 .header("Authorization", Credentials.basic(client.user, client.password))
                 .build();
 
