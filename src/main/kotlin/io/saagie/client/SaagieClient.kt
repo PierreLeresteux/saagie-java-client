@@ -42,48 +42,48 @@ class SaagieClient(override var baseURL: String = "https://manager.prod.saagie.i
         return gson.fromJson(platformClient.getAPlatform(platformId).body().string())
     }
 
-    fun getAllCapsulesForAPlatorm(platformId: Int): List<Capsule> {
-        return gson.fromJson(platformClient.getAllCapsulesForAPlatorm(platformId).body().string())
+    fun getAllCapsules(platformId: Int): List<Capsule> {
+        return gson.fromJson(platformClient.getAllCapsules(platformId).body().string())
     }
 
-    fun getACapsuleForAPlatform(platformId: Int, capsuleCode: String): Capsule {
-        return gson.fromJson(platformClient.getACapsuleForAPlatform(platformId, capsuleCode).body().string())
+    fun getACapsule(platformId: Int, capsuleCode: String): Capsule {
+        return gson.fromJson(platformClient.getACapsule(platformId, capsuleCode).body().string())
     }
 
-    fun getAllEnvVarsForAPlatform(platformId: Int): List<EnvVar> {
-        return gson.fromJson(platformClient.getAllEnvVarsForAPlatform(platformId).body().string())
+    fun getAllEnvVars(platformId: Int): List<EnvVar> {
+        return gson.fromJson(platformClient.getAllEnvVars(platformId).body().string())
     }
 
-    fun createEnvVarForAPlatform(platformId: Int, envVar: EnvVar): EnvVar {
-        return gson.fromJson(platformClient.createEnvVarForAPlatform(platformId, envVar).body().string())
+    fun createEnvVar(platformId: Int, envVar: EnvVar): EnvVar {
+        return gson.fromJson(platformClient.createEnvVar(platformId, envVar).body().string())
     }
 
-    fun createEnvVarForAPlatform(envVar: EnvVar): EnvVar {
-        return gson.fromJson(platformClient.createEnvVarForAPlatform(envVar.platformId!!, envVar).body().string())
+    fun createEnvVar(envVar: EnvVar): EnvVar {
+        return gson.fromJson(platformClient.createEnvVar(envVar.platformId!!, envVar).body().string())
     }
 
-    fun deleteEnvVarForAPlatform(platformId: Int, envvarId: Int) {
-        platformClient.deleteEnvVarForAPlatform(platformId, envvarId).body().string()
+    fun deleteEnvVar(platformId: Int, envvarId: Int) {
+        platformClient.deleteEnvVar(platformId, envvarId).body().string()
     }
 
-    fun deleteEnvVarForAPlatform(envVar: EnvVar) {
-        platformClient.deleteEnvVarForAPlatform(envVar.platformId!!, envVar.id!!).body().string()
+    fun deleteEnvVar(envVar: EnvVar) {
+        platformClient.deleteEnvVar(envVar.platformId!!, envVar.id!!).body().string()
     }
 
-    fun editEnvVarForAPlatform(platformId: Int, envvarId: Int, envVar: EnvVar): EnvVar {
-        return gson.fromJson(platformClient.editEnvVarForAPlatform(platformId, envvarId, envVar).body().string())
+    fun editEnvVar(platformId: Int, envvarId: Int, envVar: EnvVar): EnvVar {
+        return gson.fromJson(platformClient.editEnvVar(platformId, envvarId, envVar).body().string())
     }
 
-    fun editEnvVarForAPlatform(envVar: EnvVar): EnvVar {
-        return gson.fromJson(platformClient.editEnvVarForAPlatform(envVar.platformId!!, envVar.id!!, envVar).body().string())
+    fun editEnvVar(envVar: EnvVar): EnvVar {
+        return gson.fromJson(platformClient.editEnvVar(envVar.platformId!!, envVar.id!!, envVar).body().string())
     }
 
     // JOB
-    fun getAllJobsForAPlatform(platformId: Int): List<Job> {
-        return gson.fromJson(jobClient.getAllJobsForAPlatform(platformId).body().string())
+    fun getAllJobs(platformId: Int): List<Job> {
+        return gson.fromJson(jobClient.getAllJobs(platformId).body().string())
     }
 
-    fun getAJobForAPlatform(platformId: Int, jobId: Int): Job {
-        return gson.fromJson(jobClient.getAJobForAPlatform(platformId, jobId).body().string())
+    fun getAJob(platformId: Int, jobId: Int): Job {
+        return gson.fromJson(jobClient.getAJob(platformId, jobId).body().string())
     }
 }

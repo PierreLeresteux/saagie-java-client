@@ -27,7 +27,7 @@ open class JobClient(var client: AbstractSaagieClient) {
     val PLATFORM = "platform"
     val JOB = "job"
 
-    fun getAllJobsForAPlatform(platformId: Int): Response {
+    fun getAllJobs(platformId: Int): Response {
         val request = Request.Builder()
                 .url(client.constructURL(PLATFORM, platformId, JOB))
                 .header("Authorization", Credentials.basic(client.user, client.password))
@@ -38,7 +38,7 @@ open class JobClient(var client: AbstractSaagieClient) {
         return response
     }
 
-    fun getAJobForAPlatform(platformId: Int, jobId: Int): Response {
+    fun getAJob(platformId: Int, jobId: Int): Response {
         val request = Request.Builder()
                 .url(client.constructURL(PLATFORM, platformId, JOB, jobId))
                 .header("Authorization", Credentials.basic(client.user, client.password))

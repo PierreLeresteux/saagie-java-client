@@ -43,14 +43,14 @@ internal class JobClientTest : Spek({
 
         on("call all jobs") {
             it("should return the list of all jobs") {
-                val response = jobClient.getAllJobsForAPlatform(2)
+                val response = jobClient.getAllJobs(2)
                 response.code() shouldEqualTo 200
                 response.body().string() shouldEqualTo ClientConstants.ALL_JOBS.value
             }
         }
         on("call a job") {
             it("should return the job") {
-                val response = jobClient.getAJobForAPlatform(2, 1)
+                val response = jobClient.getAJob(2, 1)
                 response.code() shouldEqualTo 200
                 response.body().string() shouldEqualTo ClientConstants.A_JOB.value
             }

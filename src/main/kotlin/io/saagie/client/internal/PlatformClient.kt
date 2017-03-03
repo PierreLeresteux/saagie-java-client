@@ -51,7 +51,7 @@ open class PlatformClient(var client: AbstractSaagieClient) {
         return response
     }
 
-    fun getAllCapsulesForAPlatorm(platformId: Int): Response {
+    fun getAllCapsules(platformId: Int): Response {
         val request = Request.Builder()
                 .url(client.constructURL(PLATFORM, platformId, CONNECTIONINFO))
                 .header("Authorization", Credentials.basic(client.user, client.password))
@@ -62,7 +62,7 @@ open class PlatformClient(var client: AbstractSaagieClient) {
         return response
     }
 
-    fun getACapsuleForAPlatform(platformId: Int, capsuleCode: String): Response {
+    fun getACapsule(platformId: Int, capsuleCode: String): Response {
         val request = Request.Builder()
                 .url(client.constructURL(PLATFORM, platformId, CONNECTIONINFO, capsuleCode))
                 .header("Authorization", Credentials.basic(client.user, client.password))
@@ -73,7 +73,7 @@ open class PlatformClient(var client: AbstractSaagieClient) {
         return response
     }
 
-    fun getAllEnvVarsForAPlatform(platformId: Int): Response {
+    fun getAllEnvVars(platformId: Int): Response {
         val request = Request.Builder()
                 .url(client.constructURL(PLATFORM, platformId, ENVVARS))
                 .header("Authorization", Credentials.basic(client.user, client.password))
@@ -84,7 +84,7 @@ open class PlatformClient(var client: AbstractSaagieClient) {
         return response
     }
 
-    fun createEnvVarForAPlatform(platformId: Int, envVar: EnvVar): Response {
+    fun createEnvVar(platformId: Int, envVar: EnvVar): Response {
         val request = Request.Builder()
                 .url(client.constructURL(PLATFORM, platformId, ENVVARS))
                 .header("Authorization", Credentials.basic(client.user, client.password))
@@ -97,7 +97,7 @@ open class PlatformClient(var client: AbstractSaagieClient) {
         return response
     }
 
-    fun deleteEnvVarForAPlatform(platformId: Int, envvarId: Int): Response {
+    fun deleteEnvVar(platformId: Int, envvarId: Int): Response {
         val request = Request.Builder()
                 .url(client.constructURL(PLATFORM, platformId, ENVVARS, envvarId))
                 .header("Authorization", Credentials.basic(client.user, client.password))
@@ -109,7 +109,7 @@ open class PlatformClient(var client: AbstractSaagieClient) {
         return response
     }
 
-    fun editEnvVarForAPlatform(platformId: Int, envvarId: Int, envVar: EnvVar): Response {
+    fun editEnvVar(platformId: Int, envvarId: Int, envVar: EnvVar): Response {
         val request = Request.Builder()
                 .url(client.constructURL(PLATFORM, platformId, ENVVARS, envvarId))
                 .header("Authorization", Credentials.basic(client.user, client.password))

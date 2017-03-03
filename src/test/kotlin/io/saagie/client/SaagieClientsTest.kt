@@ -76,88 +76,88 @@ internal class SaagieClientsTest : Spek({
 
         on("call all capsules for a platform") {
             it("should return the list of capsules for a platform") {
-                val rawResponse = saagieClientRaw.getAllCapsulesForAPlatorm(2)
+                val rawResponse = saagieClientRaw.getAllCapsules(2)
                 rawResponse shouldEqualTo PlatformConstants.ALL_CAPSULES.value
-                val jsonResponse = saagieClientJson.getAllCapsulesForAPlatorm(2)
+                val jsonResponse = saagieClientJson.getAllCapsules(2)
                 jsonResponse.toString() shouldEqualTo JSONArray(PlatformConstants.ALL_CAPSULES.value).toString()
-                val response = saagieClient.getAllCapsulesForAPlatorm(2)
+                val response = saagieClient.getAllCapsules(2)
                 response shouldEqual gson.fromJson<List<Capsule>>(PlatformConstants.ALL_CAPSULES.value)
             }
         }
 
         on("call capsule for a platform and a capsulecode") {
             it("should return the capsule for a platform and a capsulecode") {
-                val rawResponse = saagieClientRaw.getACapsuleForAPlatform(2, "mongo")
+                val rawResponse = saagieClientRaw.getACapsule(2, "mongo")
                 rawResponse shouldEqualTo PlatformConstants.MONGO_CAPSULE.value
-                val jsonResponse = saagieClientJson.getACapsuleForAPlatform(2, "mongo")
+                val jsonResponse = saagieClientJson.getACapsule(2, "mongo")
                 jsonResponse.toString() shouldEqualTo JSONObject(PlatformConstants.MONGO_CAPSULE.value).toString()
-                val response = saagieClient.getACapsuleForAPlatform(2, "mongo")
+                val response = saagieClient.getACapsule(2, "mongo")
                 response shouldEqual gson.fromJson<Capsule>(PlatformConstants.MONGO_CAPSULE.value)
             }
         }
 
         on("call all envVar for a platform") {
             it("should return the list of environnement variable for a platform") {
-                val rawResponse = saagieClientRaw.getAllEnvVarsForAPlatform(2)
+                val rawResponse = saagieClientRaw.getAllEnvVars(2)
                 rawResponse shouldEqualTo PlatformConstants.ALL_ENVVARS.value
-                val jsonResponse = saagieClientJson.getAllEnvVarsForAPlatform(2)
+                val jsonResponse = saagieClientJson.getAllEnvVars(2)
                 jsonResponse.toString() shouldEqualTo JSONArray(PlatformConstants.ALL_ENVVARS.value).toString()
-                val response = saagieClient.getAllEnvVarsForAPlatform(2)
+                val response = saagieClient.getAllEnvVars(2)
                 response shouldEqual gson.fromJson<List<EnvVar>>(PlatformConstants.ALL_ENVVARS.value)
             }
         }
 
         on("call create an envVar for a platform") {
             it("should return the created envvar for a platform") {
-                val rawResponse = saagieClientRaw.createEnvVarForAPlatform(2, gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value))
+                val rawResponse = saagieClientRaw.createEnvVar(2, gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value))
                 rawResponse shouldEqualTo PlatformConstants.CREATED_ENVVAR.value
-                val jsonResponse = saagieClientJson.createEnvVarForAPlatform(2, gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value))
+                val jsonResponse = saagieClientJson.createEnvVar(2, gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value))
                 jsonResponse.toString() shouldEqualTo JSONObject(PlatformConstants.CREATED_ENVVAR.value).toString()
-                val response = saagieClient.createEnvVarForAPlatform(2, gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value))
+                val response = saagieClient.createEnvVar(2, gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value))
                 response shouldEqual gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value)
             }
         }
 
         on("call create an envVar for a platform without platformId") {
             it("should return the created envvar for a platform") {
-                val rawResponse = saagieClientRaw.createEnvVarForAPlatform(gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value))
+                val rawResponse = saagieClientRaw.createEnvVar(gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value))
                 rawResponse shouldEqualTo PlatformConstants.CREATED_ENVVAR.value
-                val jsonResponse = saagieClientJson.createEnvVarForAPlatform(gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value))
+                val jsonResponse = saagieClientJson.createEnvVar(gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value))
                 jsonResponse.toString() shouldEqualTo JSONObject(PlatformConstants.CREATED_ENVVAR.value).toString()
-                val response = saagieClient.createEnvVarForAPlatform(gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value))
+                val response = saagieClient.createEnvVar(gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value))
                 response shouldEqual gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value)
             }
         }
 
         on("call update an envVar for a platform") {
             it("should return the updated envvar for a platform") {
-                val rawResponse = saagieClientRaw.editEnvVarForAPlatform(2, 1, gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value))
+                val rawResponse = saagieClientRaw.editEnvVar(2, 1, gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value))
                 rawResponse shouldEqualTo PlatformConstants.CREATED_ENVVAR.value
-                val jsonResponse = saagieClientJson.editEnvVarForAPlatform(2, 1, gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value))
+                val jsonResponse = saagieClientJson.editEnvVar(2, 1, gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value))
                 jsonResponse.toString() shouldEqualTo JSONObject(PlatformConstants.CREATED_ENVVAR.value).toString()
-                val response = saagieClient.editEnvVarForAPlatform(2, 1, gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value))
+                val response = saagieClient.editEnvVar(2, 1, gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value))
                 response shouldEqual gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value)
             }
         }
 
         on("call update an envVar for a platform without platformId") {
             it("should return the updated envvar for a platform") {
-                val rawResponse = saagieClientRaw.editEnvVarForAPlatform(gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value))
+                val rawResponse = saagieClientRaw.editEnvVar(gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value))
                 rawResponse shouldEqualTo PlatformConstants.CREATED_ENVVAR.value
-                val jsonResponse = saagieClientJson.editEnvVarForAPlatform(gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value))
+                val jsonResponse = saagieClientJson.editEnvVar(gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value))
                 jsonResponse.toString() shouldEqualTo JSONObject(PlatformConstants.CREATED_ENVVAR.value).toString()
-                val response = saagieClient.editEnvVarForAPlatform(gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value))
+                val response = saagieClient.editEnvVar(gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value))
                 response shouldEqual gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value)
             }
         }
 
         on("call all jobs") {
             it("should return the list of all jobs") {
-                val rawResponse = saagieClientRaw.getAllJobsForAPlatform(2)
+                val rawResponse = saagieClientRaw.getAllJobs(2)
                 rawResponse shouldEqualTo ClientConstants.ALL_JOBS.value
-                val jsonResponse = saagieClientJson.getAllJobsForAPlatform(2)
+                val jsonResponse = saagieClientJson.getAllJobs(2)
                 jsonResponse.toString() shouldEqualTo JSONArray(ClientConstants.ALL_JOBS.value).toString()
-                val response = saagieClient.getAllJobsForAPlatform(2)
+                val response = saagieClient.getAllJobs(2)
                 response shouldEqual gson.fromJson<List<Job>>(ClientConstants.ALL_JOBS.value)
             }
         }

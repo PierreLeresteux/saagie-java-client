@@ -35,48 +35,48 @@ class SaagieClientRaw(override var baseURL: String = "https://manager.prod.saagi
         return platformClient.getAPlatform(platformId).body().string()
     }
 
-    fun getAllCapsulesForAPlatorm(platformId: Int): String {
-        return platformClient.getAllCapsulesForAPlatorm(platformId).body().string()
+    fun getAllCapsules(platformId: Int): String {
+        return platformClient.getAllCapsules(platformId).body().string()
     }
 
-    fun getACapsuleForAPlatform(platformId: Int, capsuleCode: String): String {
-        return platformClient.getACapsuleForAPlatform(platformId, capsuleCode).body().string()
+    fun getACapsule(platformId: Int, capsuleCode: String): String {
+        return platformClient.getACapsule(platformId, capsuleCode).body().string()
     }
 
-    fun getAllEnvVarsForAPlatform(platformId: Int): String {
-        return platformClient.getAllEnvVarsForAPlatform(platformId).body().string()
+    fun getAllEnvVars(platformId: Int): String {
+        return platformClient.getAllEnvVars(platformId).body().string()
     }
 
-    fun createEnvVarForAPlatform(platformId: Int, envVar: EnvVar): String {
-        return platformClient.createEnvVarForAPlatform(platformId, envVar).body().string()
+    fun createEnvVar(platformId: Int, envVar: EnvVar): String {
+        return platformClient.createEnvVar(platformId, envVar).body().string()
     }
 
-    fun createEnvVarForAPlatform(envVar: EnvVar): String {
-        return platformClient.createEnvVarForAPlatform(envVar.platformId!!, envVar).body().string()
+    fun createEnvVar(envVar: EnvVar): String {
+        return platformClient.createEnvVar(envVar.platformId!!, envVar).body().string()
     }
 
-    fun deleteEnvVarForAPlatform(platformId: Int, envvarId: Int) {
-        platformClient.deleteEnvVarForAPlatform(platformId, envvarId).body().string()
+    fun deleteEnvVar(platformId: Int, envvarId: Int) {
+        platformClient.deleteEnvVar(platformId, envvarId).body().string()
     }
 
-    fun deleteEnvVarForAPlatform(envVar: EnvVar) {
-        platformClient.deleteEnvVarForAPlatform(envVar.platformId!!, envVar.id!!).body().string()
+    fun deleteEnvVar(envVar: EnvVar) {
+        platformClient.deleteEnvVar(envVar.platformId!!, envVar.id!!).body().string()
     }
 
-    fun editEnvVarForAPlatform(platformId: Int, envvarId: Int, envVar: EnvVar): String {
-        return platformClient.editEnvVarForAPlatform(platformId, envvarId, envVar).body().string()
+    fun editEnvVar(platformId: Int, envvarId: Int, envVar: EnvVar): String {
+        return platformClient.editEnvVar(platformId, envvarId, envVar).body().string()
     }
 
-    fun editEnvVarForAPlatform(envVar: EnvVar): String {
-        return platformClient.editEnvVarForAPlatform(envVar.platformId!!, envVar.id!!, envVar).body().string()
+    fun editEnvVar(envVar: EnvVar): String {
+        return platformClient.editEnvVar(envVar.platformId!!, envVar.id!!, envVar).body().string()
     }
 
     // JOB
-    fun getAllJobsForAPlatform(platformId: Int): String {
-        return jobClient.getAllJobsForAPlatform(platformId).body().string()
+    fun getAllJobs(platformId: Int): String {
+        return jobClient.getAllJobs(platformId).body().string()
     }
 
-    fun getAJobForAPlatform(platformId: Int, jobId: Int): String {
-        return jobClient.getAJobForAPlatform(platformId, jobId).body().string()
+    fun getAJob(platformId: Int, jobId: Int): String {
+        return jobClient.getAJob(platformId, jobId).body().string()
     }
 }
