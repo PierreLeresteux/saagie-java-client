@@ -51,7 +51,11 @@ class SaagieManagerMockServer {
                         return MockResponse().setResponseCode(200).setBody(PlatformConstants.CREATED_ENVVAR.value)
                     }
                     baseUrl.encodedPath() + "/platform/2/job" -> return MockResponse().setResponseCode(200).setBody(ClientConstants.ALL_JOBS.value)
-                    baseUrl.encodedPath() + "/platform/2/job/1" -> return MockResponse().setResponseCode(200).setBody(ClientConstants.A_JOB.value)
+                    baseUrl.encodedPath() + "/platform/2/job/1" -> {
+                        if (request.method == "POST")
+                            return MockResponse().setResponseCode(204)
+                        return MockResponse().setResponseCode(200).setBody(ClientConstants.A_JOB.value)
+                    }
                 }
                 return MockResponse().setResponseCode(404)
             }

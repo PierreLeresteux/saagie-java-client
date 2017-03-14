@@ -60,7 +60,7 @@ class SaagieClientRaw(override var baseURL: String = "https://manager.prod.saagi
     }
 
     fun deleteEnvVar(envVar: EnvVar) {
-        platformClient.deleteEnvVar(envVar.platformId!!, envVar.id!!).body().string()
+        platformClient.deleteEnvVar(envVar.platformId!!, envVar.id!!)
     }
 
     fun editEnvVar(platformId: Int, envvarId: Int, envVar: EnvVar): String {
@@ -78,5 +78,9 @@ class SaagieClientRaw(override var baseURL: String = "https://manager.prod.saagi
 
     fun getAJob(platformId: Int, jobId: Int): String {
         return jobClient.getAJob(platformId, jobId).body().string()
+    }
+
+    fun runAJob(platformId: Int, jobId: Int) {
+        jobClient.runAJob(platformId, jobId)
     }
 }

@@ -15,9 +15,7 @@
  */
 package io.saagie.client.internal
 
-import okhttp3.Credentials
-import okhttp3.Request
-import okhttp3.Response
+import okhttp3.*
 
 /**
  * Created by pierre on 01/03/2017.
@@ -41,6 +39,18 @@ open class JobClient(var client: AbstractSaagieClient) {
     fun getAJob(platformId: Int, jobId: Int): Response {
         val request = Request.Builder()
                 .url(client.constructURL(PLATFORM, platformId, JOB, jobId))
+                .header("Authorization", Credentials.basic(client.user, client.password))
+                .build();
+
+        val response = client.httpClient.newCall(request).execute()
+        client.checkResponse(response)
+        return response
+    }
+
+    fun runAJob(platformId: Int, jobId: Int): Response {
+        val request = Request.Builder()
+                .url(client.constructURL(PLATFORM, platformId, JOB, jobId))
+                .post(RequestBody.create(MediaType.parse("application/json"), "{}"))
                 .header("Authorization", Credentials.basic(client.user, client.password))
                 .build();
 

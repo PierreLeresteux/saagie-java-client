@@ -15,9 +15,9 @@
  */
 package io.saagie.client.internal
 
-import com.google.gson.Gson
 import io.saagie.client.mockserver.ClientConstants
 import io.saagie.client.mockserver.SaagieManagerMockServer
+import org.amshove.kluent.shouldBeEmpty
 import org.amshove.kluent.shouldEqualTo
 import org.jetbrains.spek.api.Spek
 import org.jetbrains.spek.api.dsl.describe
@@ -30,7 +30,6 @@ import org.jetbrains.spek.api.dsl.on
 internal class JobClientTest : Spek({
     var jobClient = JobClient(AbstractSaagieClient())
     val mockServer = SaagieManagerMockServer()
-    val gson = Gson()
 
     describe("in a context of a JobClient") {
 
@@ -54,6 +53,14 @@ internal class JobClientTest : Spek({
                 response.code() shouldEqualTo 200
                 response.body().string() shouldEqualTo ClientConstants.A_JOB.value
             }
+        }
+        on("run a job") {
+            it("should run the job and return a 204") {
+                val response = jobClient.runAJob(2, 1)
+                response.code() shouldEqualTo 204
+                response.body().string().shouldBeEmpty()
+            }
+
         }
     }
     afterGroup {

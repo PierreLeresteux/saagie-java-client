@@ -162,6 +162,17 @@ internal class SaagieClientsTest : Spek({
             }
         }
 
+        on("call a job") {
+            it("should return the job") {
+                val rawResponse = saagieClientRaw.getAJob(2, 1)
+                rawResponse shouldEqualTo ClientConstants.A_JOB.value
+                val jsonResponse = saagieClientJson.getAJob(2, 1)
+                jsonResponse.toString() shouldEqualTo JSONObject(ClientConstants.A_JOB.value).toString()
+                val response = saagieClient.getAJob(2, 1)
+                response shouldEqual gson.fromJson(ClientConstants.A_JOB.value)
+            }
+        }
+
         afterGroup {
             mockServer.shutdown()
         }
