@@ -169,7 +169,7 @@ internal class SaagieClientsTest : Spek({
                 val jsonResponse = saagieClientJson.getAJob(2, 1)
                 jsonResponse.toString() shouldEqualTo JSONObject(ClientConstants.A_JOB.value).toString()
                 val response = saagieClient.getAJob(2, 1)
-                response shouldEqual gson.fromJson(ClientConstants.A_JOB.value)
+                response shouldEqual gson.fromJson<Job>(ClientConstants.A_JOB.value)
             }
         }
 
