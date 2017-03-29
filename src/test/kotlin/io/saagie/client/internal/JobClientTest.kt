@@ -62,6 +62,14 @@ internal class JobClientTest : Spek({
             }
 
         }
+        on("stop a job") {
+            it("should stop the job and return a 204") {
+                val response = jobClient.stopAJob(2, 1)
+                response.code() shouldEqualTo 204
+                response.body().string().shouldBeEmpty()
+            }
+
+        }
     }
     afterGroup {
         mockServer.shutdown()
