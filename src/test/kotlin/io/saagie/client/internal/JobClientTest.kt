@@ -79,7 +79,7 @@ internal class JobClientTest : Spek({
         }
         on("get one jobtask") {
             it("should return the jobtask") {
-                val response = jobClient.getJobTask(1)
+                val response = jobClient.getAJobTask(1)
                 response.code() shouldEqualTo 200
                 response.body().string() shouldEqualTo JobConstants.A_JOBTASK.value
             }

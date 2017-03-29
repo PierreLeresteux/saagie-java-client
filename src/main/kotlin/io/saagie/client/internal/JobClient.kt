@@ -85,7 +85,7 @@ open class JobClient(var client: AbstractSaagieClient) {
         return response
     }
 
-    fun getJobTask(jobTaskid: Int): Response {
+    fun getAJobTask(jobTaskid: Int): Response {
         val request = Request.Builder()
                 .url(client.constructURL(JOBTASK, jobTaskid))
                 .header("Authorization", Credentials.basic(client.user, client.password))

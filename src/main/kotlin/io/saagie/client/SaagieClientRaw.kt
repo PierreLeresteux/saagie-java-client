@@ -92,12 +92,16 @@ class SaagieClientRaw(override var baseURL: String = "https://manager.prod.saagi
         return jobClient.getJobTasksForAJob(platformId, jobId).body().string()
     }
 
-    fun getJobTask(jobTaskid: Int): String {
-        return jobClient.getJobTask(jobTaskid).body().string()
+    fun getAJobTask(jobTaskid: Int): String {
+        return jobClient.getAJobTask(jobTaskid).body().string()
     }
 
     // WORKFLOW
     fun getAllWorkflows(platformId: Int): String {
         return workflowClient.getAllWorkflows(platformId).body().string()
+    }
+
+    fun getAWorkflow(platformId: Int, workflowId: Int): String {
+        return workflowClient.getAWorkflow(platformId, workflowId).body().string()
     }
 }

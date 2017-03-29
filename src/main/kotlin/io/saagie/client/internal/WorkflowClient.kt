@@ -38,4 +38,15 @@ open class WorkflowClient(var client: AbstractSaagieClient) {
         return response
     }
 
+    fun getAWorkflow(platformId: Int, workflowId: Int): Response {
+        val request = Request.Builder()
+                .url(client.constructURL(PLATFORM, platformId, WORKFLOW, workflowId))
+                .header("Authorization", Credentials.basic(client.user, client.password))
+                .build();
+
+        val response = client.httpClient.newCall(request).execute()
+        client.checkResponse(response)
+        return response
+    }
+
 }

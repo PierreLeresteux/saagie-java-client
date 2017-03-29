@@ -15,6 +15,8 @@
  */
 package io.saagie.client.dto.workflow
 
+import io.saagie.client.dto.job.Job
+
 /**
  * Created by pierre on 01/03/2017.
  */
@@ -27,5 +29,6 @@ data class Workflow(
         val platformId: Int?,
         val jobCount: Int?,
         val lastInstance: Instance?,
+        val jobs: List<Job>?,
         val runningInstances: Int
 )

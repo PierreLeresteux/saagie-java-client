@@ -188,16 +188,16 @@ internal class SaagieClientsTest : Spek({
         }
         on("get a jobtask") {
             it("should return the jobtask") {
-                val rawResponse = saagieClientRaw.getJobTask(1)
+                val rawResponse = saagieClientRaw.getAJobTask(1)
                 rawResponse shouldEqualTo JobConstants.A_JOBTASK.value
-                val jsonResponse = saagieClientJson.getJobTask(1)
+                val jsonResponse = saagieClientJson.getAJobTask(1)
                 jsonResponse.toString() shouldEqualTo JSONObject(JobConstants.A_JOBTASK.value).toString()
-                val response = saagieClient.getJobTask(1)
+                val response = saagieClient.getAJobTask(1)
                 response shouldEqual gson.fromJson<JobTask>(JobConstants.A_JOBTASK.value)
             }
         }
 
-        on("call all workflows") {
+        on("get all workflows") {
             it("should return the list of all workflows") {
                 val rawResponse = saagieClientRaw.getAllWorkflows(1)
                 rawResponse shouldEqualTo WorkflowConstants.ALL_WORKFLOWS.value
@@ -205,6 +205,17 @@ internal class SaagieClientsTest : Spek({
                 jsonResponse.toString() shouldEqualTo JSONArray(WorkflowConstants.ALL_WORKFLOWS.value).toString()
                 val response = saagieClient.getAllWorkflows(1)
                 response shouldEqual gson.fromJson<List<Workflow>>(WorkflowConstants.ALL_WORKFLOWS.value)
+            }
+        }
+
+        on("get a workflow") {
+            it("should return the workflow") {
+                val rawResponse = saagieClientRaw.getAWorkflow(1, 1)
+                rawResponse shouldEqualTo WorkflowConstants.A_WORKFLOW.value
+                val jsonResponse = saagieClientJson.getAWorkflow(1, 1)
+                jsonResponse.toString() shouldEqualTo JSONObject(WorkflowConstants.A_WORKFLOW.value).toString()
+                val response = saagieClient.getAWorkflow(1, 1)
+                response shouldEqual gson.fromJson<Workflow>(WorkflowConstants.A_WORKFLOW.value)
             }
         }
 

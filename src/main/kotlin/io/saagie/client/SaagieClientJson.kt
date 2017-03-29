@@ -94,12 +94,16 @@ class SaagieClientJson(override var baseURL: String = "https://manager.prod.saag
         return JSONObject(jobClient.getJobTasksForAJob(platformId, jobId).body().string())
     }
 
-    fun getJobTask(jobTaskid: Int): JSONObject {
-        return JSONObject(jobClient.getJobTask(jobTaskid).body().string())
+    fun getAJobTask(jobTaskid: Int): JSONObject {
+        return JSONObject(jobClient.getAJobTask(jobTaskid).body().string())
     }
 
     // WORKFLOW
     fun getAllWorkflows(platformId: Int): JSONArray {
         return JSONArray(workflowClient.getAllWorkflows(platformId).body().string())
+    }
+
+    fun getAWorkflow(platformId: Int, workflowId: Int): JSONObject {
+        return JSONObject(workflowClient.getAWorkflow(platformId, workflowId).body().string())
     }
 }

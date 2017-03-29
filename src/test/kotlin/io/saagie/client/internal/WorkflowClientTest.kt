@@ -46,6 +46,13 @@ internal class WorkflowClientTest : Spek({
                 response.body().string() shouldEqualTo WorkflowConstants.ALL_WORKFLOWS.value
             }
         }
+        on("call a workflow") {
+            it("should return the workflow") {
+                val response = workflowClient.getAWorkflow(1, 1)
+                response.code() shouldEqualTo 200
+                response.body().string() shouldEqualTo WorkflowConstants.A_WORKFLOW.value
+            }
+        }
     }
     afterGroup {
         mockServer.shutdown()
