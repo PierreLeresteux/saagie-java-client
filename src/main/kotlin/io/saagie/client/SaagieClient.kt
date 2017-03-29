@@ -23,6 +23,7 @@ import io.saagie.client.dto.job.JobTask
 import io.saagie.client.dto.platform.Capsule
 import io.saagie.client.dto.platform.EnvVar
 import io.saagie.client.dto.platform.Platform
+import io.saagie.client.dto.workflow.Instance
 import io.saagie.client.dto.workflow.Workflow
 import io.saagie.client.internal.AbstractSaagieClient
 
@@ -117,5 +118,9 @@ class SaagieClient(override var baseURL: String = "https://manager.prod.saagie.i
 
     fun getAllWorkflowInstances(platformId: Int, workflowId: Int): PaginatedObject<JobTask> {
         return gson.fromJson(workflowClient.getAllWorkflowInstances(platformId, workflowId).body().string())
+    }
+
+    fun getAWorkflowInstance(platformId: Int, workflowId: Int, instanceId: Int): Instance {
+        return gson.fromJson(workflowClient.getAWorkflowInstance(platformId, workflowId, instanceId).body().string())
     }
 }

@@ -23,6 +23,7 @@ import io.saagie.client.dto.job.JobTask
 import io.saagie.client.dto.platform.Capsule
 import io.saagie.client.dto.platform.EnvVar
 import io.saagie.client.dto.platform.Platform
+import io.saagie.client.dto.workflow.Instance
 import io.saagie.client.dto.workflow.Workflow
 import io.saagie.client.mockserver.JobConstants
 import io.saagie.client.mockserver.PlatformConstants
@@ -227,6 +228,17 @@ internal class SaagieClientsTest : Spek({
                 jsonResponse.toString() shouldEqualTo JSONObject(WorkflowConstants.ALL_INSTANCES.value).toString()
                 val response = saagieClient.getAllWorkflowInstances(1, 1)
                 response shouldEqual gson.fromJson<PaginatedObject<JobTask>>(WorkflowConstants.ALL_INSTANCES.value)
+            }
+        }
+
+        on("get a workflow instance") {
+            it("should return the workflow instance") {
+                val rawResponse = saagieClientRaw.getAWorkflowInstance(1, 1, 1)
+                rawResponse shouldEqualTo WorkflowConstants.AN_INSTANCE.value
+                val jsonResponse = saagieClientJson.getAWorkflowInstance(1, 1, 1)
+                jsonResponse.toString() shouldEqualTo JSONObject(WorkflowConstants.AN_INSTANCE.value).toString()
+                val response = saagieClient.getAWorkflowInstance(1, 1, 1)
+                response shouldEqual gson.fromJson<Instance>(WorkflowConstants.AN_INSTANCE.value)
             }
         }
 

@@ -110,4 +110,8 @@ class SaagieClientJson(override var baseURL: String = "https://manager.prod.saag
     fun getAllWorkflowInstances(platformId: Int, workflowId: Int): JSONObject {
         return JSONObject(workflowClient.getAllWorkflowInstances(platformId, workflowId).body().string())
     }
+
+    fun getAWorkflowInstance(platformId: Int, workflowId: Int, instanceId: Int): JSONObject {
+        return JSONObject(workflowClient.getAWorkflowInstance(platformId, workflowId, instanceId).body().string())
+    }
 }
