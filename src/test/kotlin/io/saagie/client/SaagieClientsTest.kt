@@ -17,7 +17,9 @@ package io.saagie.client
 
 import com.github.salomonbrys.kotson.fromJson
 import com.google.gson.Gson
+import io.saagie.client.dto.PaginatedObject
 import io.saagie.client.dto.job.Job
+import io.saagie.client.dto.job.JobTask
 import io.saagie.client.dto.platform.Capsule
 import io.saagie.client.dto.platform.EnvVar
 import io.saagie.client.dto.platform.Platform
@@ -170,6 +172,16 @@ internal class SaagieClientsTest : Spek({
                 jsonResponse.toString() shouldEqualTo JSONObject(ClientConstants.A_JOB.value).toString()
                 val response = saagieClient.getAJob(2, 1)
                 response shouldEqual gson.fromJson<Job>(ClientConstants.A_JOB.value)
+            }
+        }
+        on("get all jobtasks for a job") {
+            it("should return the paginated jobtasks list of a job") {
+                val rawResponse = saagieClientRaw.getJobTasksForAJob(2, 1)
+                rawResponse shouldEqualTo ClientConstants.ALL_JOBTASKS.value
+                val jsonResponse = saagieClientJson.getJobTasksForAJob(2, 1)
+                jsonResponse.toString() shouldEqualTo JSONObject(ClientConstants.ALL_JOBTASKS.value).toString()
+                val response = saagieClient.getJobTasksForAJob(2, 1)
+                response shouldEqual gson.fromJson<PaginatedObject<JobTask>>(ClientConstants.ALL_JOBTASKS.value)
             }
         }
 

@@ -70,6 +70,13 @@ internal class JobClientTest : Spek({
             }
 
         }
+        on("get all jobtasks for a job") {
+            it("should return the paginated list of jobtasks") {
+                val response = jobClient.getJobTasksForAJob(2, 1)
+                response.code() shouldEqualTo 200
+                response.body().string() shouldEqualTo ClientConstants.ALL_JOBTASKS.value
+            }
+        }
     }
     afterGroup {
         mockServer.shutdown()

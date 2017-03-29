@@ -17,7 +17,9 @@ package io.saagie.client
 
 import com.github.salomonbrys.kotson.fromJson
 import com.google.gson.Gson
+import io.saagie.client.dto.PaginatedObject
 import io.saagie.client.dto.job.Job
+import io.saagie.client.dto.job.JobTask
 import io.saagie.client.dto.platform.Capsule
 import io.saagie.client.dto.platform.EnvVar
 import io.saagie.client.dto.platform.Platform
@@ -93,5 +95,9 @@ class SaagieClient(override var baseURL: String = "https://manager.prod.saagie.i
 
     fun stopAJob(platformId: Int, jobId: Int) {
         jobClient.stopAJob(platformId, jobId)
+    }
+
+    fun getJobTasksForAJob(platformId: Int, jobId: Int): PaginatedObject<JobTask> {
+        return gson.fromJson(jobClient.getJobTasksForAJob(platformId, jobId).body().string())
     }
 }
