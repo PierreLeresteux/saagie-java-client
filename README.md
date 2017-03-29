@@ -1,4 +1,4 @@
-#Saagie Java Client [![Build Status](https://api.travis-ci.org/PierreLeresteux/saagie-java-client.svg?branch=1.2)](https://travis-ci.org/PierreLeresteux/saagie-java-client)
+#Saagie Java Client [![Build Status](https://api.travis-ci.org/PierreLeresteux/saagie-java-client.svg?branch=1.3)](https://travis-ci.org/PierreLeresteux/saagie-java-client)
 
 Saagie Java Client is a library to easily call Saagie Manager. 
 
@@ -123,14 +123,14 @@ _Documentation coming soon_
 ##Include it via maven/gradle
 
 
-If your Saagie Manager is in version _v1.2.0 (build 632)_, use the SaagieJavaClient in version 1.2.X
+If your Saagie Manager is in version _v1.3.0 (build )_, use the SaagieJavaClient in version 1.3.X
 ###Maven
 
 ```
 <dependency>
     <groupId>io.saagie</groupId>
     <artifactId>saagieclient</artifactId>
-    <version>1.2.0</version>
+    <version>1.3.0</version>
 </dependency>
    
 ```
@@ -139,6 +139,6 @@ If your Saagie Manager is in version _v1.2.0 (build 632)_, use the SaagieJavaCli
 
 ```
 dependencies {
-    compile 'io.saagie:saagieclient:1.2.0'
+    compile 'io.saagie:saagieclient:1.3.0'
 }
 ```
