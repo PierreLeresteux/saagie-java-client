@@ -38,6 +38,7 @@ open class AbstractSaagieClient(
 
     var platformClient = PlatformClient(this)
     var jobClient = JobClient(this)
+    var workflowClient = WorkflowClient(this)
 
     internal fun checkResponse(response: Response) {
         if (response.code() > 299)

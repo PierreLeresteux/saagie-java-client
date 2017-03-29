@@ -23,9 +23,11 @@ import io.saagie.client.dto.job.JobTask
 import io.saagie.client.dto.platform.Capsule
 import io.saagie.client.dto.platform.EnvVar
 import io.saagie.client.dto.platform.Platform
-import io.saagie.client.mockserver.ClientConstants
+import io.saagie.client.dto.workflow.Workflow
+import io.saagie.client.mockserver.JobConstants
 import io.saagie.client.mockserver.PlatformConstants
 import io.saagie.client.mockserver.SaagieManagerMockServer
+import io.saagie.client.mockserver.WorkflowConstants
 import org.amshove.kluent.shouldEqual
 import org.amshove.kluent.shouldEqualTo
 import org.jetbrains.spek.api.Spek
@@ -156,42 +158,53 @@ internal class SaagieClientsTest : Spek({
         on("call all jobs") {
             it("should return the list of all jobs") {
                 val rawResponse = saagieClientRaw.getAllJobs(2)
-                rawResponse shouldEqualTo ClientConstants.ALL_JOBS.value
+                rawResponse shouldEqualTo JobConstants.ALL_JOBS.value
                 val jsonResponse = saagieClientJson.getAllJobs(2)
-                jsonResponse.toString() shouldEqualTo JSONArray(ClientConstants.ALL_JOBS.value).toString()
+                jsonResponse.toString() shouldEqualTo JSONArray(JobConstants.ALL_JOBS.value).toString()
                 val response = saagieClient.getAllJobs(2)
-                response shouldEqual gson.fromJson<List<Job>>(ClientConstants.ALL_JOBS.value)
+                response shouldEqual gson.fromJson<List<Job>>(JobConstants.ALL_JOBS.value)
             }
         }
 
         on("call a job") {
             it("should return the job") {
                 val rawResponse = saagieClientRaw.getAJob(2, 1)
-                rawResponse shouldEqualTo ClientConstants.A_JOB.value
+                rawResponse shouldEqualTo JobConstants.A_JOB.value
                 val jsonResponse = saagieClientJson.getAJob(2, 1)
-                jsonResponse.toString() shouldEqualTo JSONObject(ClientConstants.A_JOB.value).toString()
+                jsonResponse.toString() shouldEqualTo JSONObject(JobConstants.A_JOB.value).toString()
                 val response = saagieClient.getAJob(2, 1)
-                response shouldEqual gson.fromJson<Job>(ClientConstants.A_JOB.value)
+                response shouldEqual gson.fromJson<Job>(JobConstants.A_JOB.value)
             }
         }
         on("get all jobtasks for a job") {
             it("should return the paginated jobtasks list of a job") {
                 val rawResponse = saagieClientRaw.getJobTasksForAJob(2, 1)
-                rawResponse shouldEqualTo ClientConstants.ALL_JOBTASKS.value
+                rawResponse shouldEqualTo JobConstants.ALL_JOBTASKS.value
                 val jsonResponse = saagieClientJson.getJobTasksForAJob(2, 1)
-                jsonResponse.toString() shouldEqualTo JSONObject(ClientConstants.ALL_JOBTASKS.value).toString()
+                jsonResponse.toString() shouldEqualTo JSONObject(JobConstants.ALL_JOBTASKS.value).toString()
                 val response = saagieClient.getJobTasksForAJob(2, 1)
-                response shouldEqual gson.fromJson<PaginatedObject<JobTask>>(ClientConstants.ALL_JOBTASKS.value)
+                response shouldEqual gson.fromJson<PaginatedObject<JobTask>>(JobConstants.ALL_JOBTASKS.value)
             }
         }
         on("get a jobtask") {
             it("should return the jobtask") {
                 val rawResponse = saagieClientRaw.getJobTask(1)
-                rawResponse shouldEqualTo ClientConstants.A_JOBTASK.value
+                rawResponse shouldEqualTo JobConstants.A_JOBTASK.value
                 val jsonResponse = saagieClientJson.getJobTask(1)
-                jsonResponse.toString() shouldEqualTo JSONObject(ClientConstants.A_JOBTASK.value).toString()
+                jsonResponse.toString() shouldEqualTo JSONObject(JobConstants.A_JOBTASK.value).toString()
                 val response = saagieClient.getJobTask(1)
-                response shouldEqual gson.fromJson<JobTask>(ClientConstants.A_JOBTASK.value)
+                response shouldEqual gson.fromJson<JobTask>(JobConstants.A_JOBTASK.value)
+            }
+        }
+
+        on("call all workflows") {
+            it("should return the list of all workflows") {
+                val rawResponse = saagieClientRaw.getAllWorkflows(1)
+                rawResponse shouldEqualTo WorkflowConstants.ALL_WORKFLOWS.value
+                val jsonResponse = saagieClientJson.getAllWorkflows(1)
+                jsonResponse.toString() shouldEqualTo JSONArray(WorkflowConstants.ALL_WORKFLOWS.value).toString()
+                val response = saagieClient.getAllWorkflows(1)
+                response shouldEqual gson.fromJson<List<Workflow>>(WorkflowConstants.ALL_WORKFLOWS.value)
             }
         }
 

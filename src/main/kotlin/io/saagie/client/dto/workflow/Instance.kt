@@ -16,16 +16,12 @@
 package io.saagie.client.dto.workflow
 
 /**
- * Created by pierre on 01/03/2017.
+ * Created by pierre on 3/29/17.
  */
-data class Workflow(
-        val inCurrent: Boolean?,
+data class Instance(
         val id: Int,
-        val name: String,
-        val createDate: String?,
-        val modificationDate: String?,
-        val platformId: Int?,
-        val jobCount: Int?,
-        val lastInstance: Instance?,
-        val runningInstances: Int
+        val startDate: String,
+        val endDate: String,
+        val workflowId: Int,
+        val status: String
 )

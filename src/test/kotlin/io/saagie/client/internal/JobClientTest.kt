@@ -15,7 +15,7 @@
  */
 package io.saagie.client.internal
 
-import io.saagie.client.mockserver.ClientConstants
+import io.saagie.client.mockserver.JobConstants
 import io.saagie.client.mockserver.SaagieManagerMockServer
 import org.amshove.kluent.shouldBeEmpty
 import org.amshove.kluent.shouldEqualTo
@@ -44,14 +44,14 @@ internal class JobClientTest : Spek({
             it("should return the list of all jobs") {
                 val response = jobClient.getAllJobs(2)
                 response.code() shouldEqualTo 200
-                response.body().string() shouldEqualTo ClientConstants.ALL_JOBS.value
+                response.body().string() shouldEqualTo JobConstants.ALL_JOBS.value
             }
         }
         on("call a job") {
             it("should return the job") {
                 val response = jobClient.getAJob(2, 1)
                 response.code() shouldEqualTo 200
-                response.body().string() shouldEqualTo ClientConstants.A_JOB.value
+                response.body().string() shouldEqualTo JobConstants.A_JOB.value
             }
         }
         on("run a job") {
@@ -74,14 +74,14 @@ internal class JobClientTest : Spek({
             it("should return the paginated list of jobtasks") {
                 val response = jobClient.getJobTasksForAJob(2, 1)
                 response.code() shouldEqualTo 200
-                response.body().string() shouldEqualTo ClientConstants.ALL_JOBTASKS.value
+                response.body().string() shouldEqualTo JobConstants.ALL_JOBTASKS.value
             }
         }
         on("get one jobtask") {
             it("should return the jobtask") {
                 val response = jobClient.getJobTask(1)
                 response.code() shouldEqualTo 200
-                response.body().string() shouldEqualTo ClientConstants.A_JOBTASK.value
+                response.body().string() shouldEqualTo JobConstants.A_JOBTASK.value
             }
         }
     }

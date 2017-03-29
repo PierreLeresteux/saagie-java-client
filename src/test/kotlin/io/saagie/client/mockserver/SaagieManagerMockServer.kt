@@ -50,16 +50,17 @@ class SaagieManagerMockServer {
                             return MockResponse().setResponseCode(204)
                         return MockResponse().setResponseCode(200).setBody(PlatformConstants.CREATED_ENVVAR.value)
                     }
-                    baseUrl.encodedPath() + "/platform/2/job" -> return MockResponse().setResponseCode(200).setBody(ClientConstants.ALL_JOBS.value)
+                    baseUrl.encodedPath() + "/platform/2/job" -> return MockResponse().setResponseCode(200).setBody(JobConstants.ALL_JOBS.value)
                     baseUrl.encodedPath() + "/platform/2/job/1" -> {
                         if (request.method == "POST")
                             return MockResponse().setResponseCode(204)
-                        return MockResponse().setResponseCode(200).setBody(ClientConstants.A_JOB.value)
+                        return MockResponse().setResponseCode(200).setBody(JobConstants.A_JOB.value)
                     }
                     baseUrl.encodedPath() + "/platform/2/job/1/run" -> return MockResponse().setResponseCode(204)
                     baseUrl.encodedPath() + "/platform/2/job/1/stop" -> return MockResponse().setResponseCode(204)
-                    baseUrl.encodedPath() + "/platform/2/job/1/jobtask" -> return MockResponse().setResponseCode(200).setBody(ClientConstants.ALL_JOBTASKS.value)
-                    baseUrl.encodedPath() + "/jobtask/1" -> return MockResponse().setResponseCode(200).setBody(ClientConstants.A_JOBTASK.value)
+                    baseUrl.encodedPath() + "/platform/2/job/1/jobtask" -> return MockResponse().setResponseCode(200).setBody(JobConstants.ALL_JOBTASKS.value)
+                    baseUrl.encodedPath() + "/jobtask/1" -> return MockResponse().setResponseCode(200).setBody(JobConstants.A_JOBTASK.value)
+                    baseUrl.encodedPath() + "/platform/1/workflow" -> return MockResponse().setResponseCode(200).setBody(WorkflowConstants.ALL_WORKFLOWS.value)
                 }
                 return MockResponse().setResponseCode(404)
             }

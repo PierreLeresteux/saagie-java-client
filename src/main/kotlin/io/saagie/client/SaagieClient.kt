@@ -23,6 +23,7 @@ import io.saagie.client.dto.job.JobTask
 import io.saagie.client.dto.platform.Capsule
 import io.saagie.client.dto.platform.EnvVar
 import io.saagie.client.dto.platform.Platform
+import io.saagie.client.dto.workflow.Workflow
 import io.saagie.client.internal.AbstractSaagieClient
 
 /**
@@ -103,5 +104,10 @@ class SaagieClient(override var baseURL: String = "https://manager.prod.saagie.i
 
     fun getJobTask(jobTaskid: Int): JobTask {
         return gson.fromJson(jobClient.getJobTask(jobTaskid).body().string())
+    }
+
+    // WORKFLOW
+    fun getAllWorkflows(platformId: Int): List<Workflow> {
+        return gson.fromJson(workflowClient.getAllWorkflows(platformId).body().string())
     }
 }
