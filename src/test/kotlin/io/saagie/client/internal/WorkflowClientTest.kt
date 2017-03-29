@@ -53,6 +53,13 @@ internal class WorkflowClientTest : Spek({
                 response.body().string() shouldEqualTo WorkflowConstants.A_WORKFLOW.value
             }
         }
+        on("call all workflow instances") {
+            it("should return the paginated list of all workflow instances") {
+                val response = workflowClient.getAllWorkflowInstances(1, 1)
+                response.code() shouldEqualTo 200
+                response.body().string() shouldEqualTo WorkflowConstants.ALL_INSTANCES.value
+            }
+        }
     }
     afterGroup {
         mockServer.shutdown()

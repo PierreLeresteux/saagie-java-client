@@ -26,6 +26,7 @@ open class WorkflowClient(var client: AbstractSaagieClient) {
 
     val PLATFORM = "platform"
     val WORKFLOW = "workflow"
+    val INSTANCE = "instance"
 
     fun getAllWorkflows(platformId: Int): Response {
         val request = Request.Builder()
@@ -41,6 +42,17 @@ open class WorkflowClient(var client: AbstractSaagieClient) {
     fun getAWorkflow(platformId: Int, workflowId: Int): Response {
         val request = Request.Builder()
                 .url(client.constructURL(PLATFORM, platformId, WORKFLOW, workflowId))
+                .header("Authorization", Credentials.basic(client.user, client.password))
+                .build();
+
+        val response = client.httpClient.newCall(request).execute()
+        client.checkResponse(response)
+        return response
+    }
+
+    fun getAllWorkflowInstances(platformId: Int, workflowId: Int): Response {
+        val request = Request.Builder()
+                .url(client.constructURL(PLATFORM, platformId, WORKFLOW, workflowId, INSTANCE))
                 .header("Authorization", Credentials.basic(client.user, client.password))
                 .build();
 

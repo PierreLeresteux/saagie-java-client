@@ -219,6 +219,17 @@ internal class SaagieClientsTest : Spek({
             }
         }
 
+        on("get all workflow instances") {
+            it("should return the list of all workflow instances") {
+                val rawResponse = saagieClientRaw.getAllWorkflowInstances(1, 1)
+                rawResponse shouldEqualTo WorkflowConstants.ALL_INSTANCES.value
+                val jsonResponse = saagieClientJson.getAllWorkflowInstances(1, 1)
+                jsonResponse.toString() shouldEqualTo JSONObject(WorkflowConstants.ALL_INSTANCES.value).toString()
+                val response = saagieClient.getAllWorkflowInstances(1, 1)
+                response shouldEqual gson.fromJson<PaginatedObject<JobTask>>(WorkflowConstants.ALL_INSTANCES.value)
+            }
+        }
+
 
         afterGroup {
             mockServer.shutdown()
