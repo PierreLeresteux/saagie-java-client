@@ -1,4 +1,4 @@
-#Saagie Java Client [![Build Status](https://api.travis-ci.org/PierreLeresteux/saagie-java-client.svg?branch=1.3)](https://travis-ci.org/PierreLeresteux/saagie-java-client)
+# Saagie Java Client [![Build Status](https://api.travis-ci.org/PierreLeresteux/saagie-java-client.svg?branch=1.3)](https://travis-ci.org/PierreLeresteux/saagie-java-client)
 
 Saagie Java Client is a library to easily call Saagie Manager. 
 
@@ -6,11 +6,11 @@ All the code is written in [Kotlin](https://kotlinlang.org) and uses an HTTPClie
 
 ### :warning: NOT READY FOR PRODUCTION NOW (and not available on Maven Central)
 
-#Versions
+## Versions
 
 For each version of the manager, we update and release the library to add new features. Be sure to use the same version of the library as your Saagie Manager (version is available in the footer)
 
-#Output formats
+## Output formats
 
 We decide to deliver 3 output formats : 
  - raw (i.e. java.lang.String)
@@ -21,7 +21,7 @@ We decide to deliver 3 output formats :
  
 Because depending your need, you can use the format you want in your application.
  
- #Examples
+## Examples
  
  3 SaagieClient are availables :
   
@@ -121,11 +121,11 @@ public class TestSaagieClient {
 
 _Documentation coming soon_
 
-##Include it via maven/gradle
+## Include it via maven/gradle
 
 
 If your Saagie Manager is in version _v1.3.0 (build )_, use the SaagieJavaClient in version 1.3.X
-###Maven
+### Maven
 
 ```
 <dependency>
@@ -136,7 +136,7 @@ If your Saagie Manager is in version _v1.3.0 (build )_, use the SaagieJavaClient
    
 ```
 
-###Gradle
+### Gradle
 
 ```
 dependencies {
