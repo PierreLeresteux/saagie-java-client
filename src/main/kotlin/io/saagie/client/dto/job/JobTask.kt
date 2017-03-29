@@ -20,7 +20,12 @@ package io.saagie.client.dto.job
  */
 data class JobTask(
         val id: Int,
+        val job_id: Int?,
+        val platform_id: Int?,
         val status: String,
+        val version_number: Int?,
         val startDateTime: String,
-        val endDateTime: String
+        val endDateTime: String,
+        val logs_out: String?,
+        val logs_err: String?
 )

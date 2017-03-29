@@ -59,6 +59,7 @@ class SaagieManagerMockServer {
                     baseUrl.encodedPath() + "/platform/2/job/1/run" -> return MockResponse().setResponseCode(204)
                     baseUrl.encodedPath() + "/platform/2/job/1/stop" -> return MockResponse().setResponseCode(204)
                     baseUrl.encodedPath() + "/platform/2/job/1/jobtask" -> return MockResponse().setResponseCode(200).setBody(ClientConstants.ALL_JOBTASKS.value)
+                    baseUrl.encodedPath() + "/jobtask/1" -> return MockResponse().setResponseCode(200).setBody(ClientConstants.A_JOBTASK.value)
                 }
                 return MockResponse().setResponseCode(404)
             }

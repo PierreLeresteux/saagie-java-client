@@ -93,4 +93,8 @@ class SaagieClientJson(override var baseURL: String = "https://manager.prod.saag
     fun getJobTasksForAJob(platformId: Int, jobId: Int): JSONObject {
         return JSONObject(jobClient.getJobTasksForAJob(platformId, jobId).body().string())
     }
+
+    fun getJobTask(jobTaskid: Int): JSONObject {
+        return JSONObject(jobClient.getJobTask(jobTaskid).body().string())
+    }
 }

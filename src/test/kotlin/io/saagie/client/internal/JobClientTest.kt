@@ -77,6 +77,13 @@ internal class JobClientTest : Spek({
                 response.body().string() shouldEqualTo ClientConstants.ALL_JOBTASKS.value
             }
         }
+        on("get one jobtask") {
+            it("should return the jobtask") {
+                val response = jobClient.getJobTask(1)
+                response.code() shouldEqualTo 200
+                response.body().string() shouldEqualTo ClientConstants.A_JOBTASK.value
+            }
+        }
     }
     afterGroup {
         mockServer.shutdown()

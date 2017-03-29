@@ -184,6 +184,17 @@ internal class SaagieClientsTest : Spek({
                 response shouldEqual gson.fromJson<PaginatedObject<JobTask>>(ClientConstants.ALL_JOBTASKS.value)
             }
         }
+        on("get a jobtask") {
+            it("should return the jobtask") {
+                val rawResponse = saagieClientRaw.getJobTask(1)
+                rawResponse shouldEqualTo ClientConstants.A_JOBTASK.value
+                val jsonResponse = saagieClientJson.getJobTask(1)
+                jsonResponse.toString() shouldEqualTo JSONObject(ClientConstants.A_JOBTASK.value).toString()
+                val response = saagieClient.getJobTask(1)
+                response shouldEqual gson.fromJson<JobTask>(ClientConstants.A_JOBTASK.value)
+            }
+        }
+
 
         afterGroup {
             mockServer.shutdown()

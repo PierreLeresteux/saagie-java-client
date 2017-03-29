@@ -100,4 +100,8 @@ class SaagieClient(override var baseURL: String = "https://manager.prod.saagie.i
     fun getJobTasksForAJob(platformId: Int, jobId: Int): PaginatedObject<JobTask> {
         return gson.fromJson(jobClient.getJobTasksForAJob(platformId, jobId).body().string())
     }
+
+    fun getJobTask(jobTaskid: Int): JobTask {
+        return gson.fromJson(jobClient.getJobTask(jobTaskid).body().string())
+    }
 }
