@@ -113,4 +113,11 @@ class SaagieClientRaw(override var baseURL: String = "https://manager.prod.saagi
         return workflowClient.getAWorkflowInstance(platformId, workflowId, instanceId).body().string()
     }
 
+    fun runAWorkflow(platformId: Int, workflowId: Int) {
+        workflowClient.runAWorkflow(platformId, workflowId).body().string()
+    }
+
+    fun stopAWorkflow(platformId: Int, workflowId: Int) {
+        workflowClient.stopAWorkflow(platformId, workflowId).body().string()
+    }
 }

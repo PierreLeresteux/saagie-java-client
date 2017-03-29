@@ -60,6 +60,19 @@ internal class WorkflowClientTest : Spek({
                 response.body().string() shouldEqualTo WorkflowConstants.ALL_INSTANCES.value
             }
         }
+        on("call start a workflow") {
+            it("should run the workflow and return a status 204") {
+                val response = workflowClient.runAWorkflow(1, 1)
+                response.code() shouldEqualTo 204
+            }
+        }
+
+        on("call stop a workflow") {
+            it("should stop the workflow and return a status 204") {
+                val response = workflowClient.stopAWorkflow(1, 1)
+                response.code() shouldEqualTo 204
+            }
+        }
     }
     afterGroup {
         mockServer.shutdown()

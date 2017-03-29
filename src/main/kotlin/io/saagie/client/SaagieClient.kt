@@ -123,4 +123,12 @@ class SaagieClient(override var baseURL: String = "https://manager.prod.saagie.i
     fun getAWorkflowInstance(platformId: Int, workflowId: Int, instanceId: Int): Instance {
         return gson.fromJson(workflowClient.getAWorkflowInstance(platformId, workflowId, instanceId).body().string())
     }
+
+    fun runAWorkflow(platformId: Int, workflowId: Int) {
+        workflowClient.runAWorkflow(platformId, workflowId).body().string()
+    }
+
+    fun stopAWorkflow(platformId: Int, workflowId: Int) {
+        workflowClient.stopAWorkflow(platformId, workflowId).body().string()
+    }
 }

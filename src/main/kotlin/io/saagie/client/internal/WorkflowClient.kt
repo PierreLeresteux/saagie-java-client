@@ -15,9 +15,7 @@
  */
 package io.saagie.client.internal
 
-import okhttp3.Credentials
-import okhttp3.Request
-import okhttp3.Response
+import okhttp3.*
 
 /**
  * Created by pierre on 3/29/17.
@@ -27,6 +25,8 @@ open class WorkflowClient(var client: AbstractSaagieClient) {
     val PLATFORM = "platform"
     val WORKFLOW = "workflow"
     val INSTANCE = "instance"
+    val RUN = "run"
+    val STOP = "stop"
 
     fun getAllWorkflows(platformId: Int): Response {
         val request = Request.Builder()
@@ -64,6 +64,30 @@ open class WorkflowClient(var client: AbstractSaagieClient) {
     fun getAWorkflowInstance(platformId: Int, workflowId: Int, instanceId: Int): Response {
         val request = Request.Builder()
                 .url(client.constructURL(PLATFORM, platformId, WORKFLOW, workflowId, INSTANCE, instanceId))
+                .header("Authorization", Credentials.basic(client.user, client.password))
+                .build();
+
+        val response = client.httpClient.newCall(request).execute()
+        client.checkResponse(response)
+        return response
+    }
+
+    fun runAWorkflow(platformId: Int, workflowId: Int): Response {
+        val request = Request.Builder()
+                .url(client.constructURL(PLATFORM, platformId, WORKFLOW, workflowId, RUN))
+                .post(RequestBody.create(MediaType.parse("application/json"), "{}"))
+                .header("Authorization", Credentials.basic(client.user, client.password))
+                .build();
+
+        val response = client.httpClient.newCall(request).execute()
+        client.checkResponse(response)
+        return response
+    }
+
+    fun stopAWorkflow(platformId: Int, workflowId: Int): Response {
+        val request = Request.Builder()
+                .url(client.constructURL(PLATFORM, platformId, WORKFLOW, workflowId, STOP))
+                .post(RequestBody.create(MediaType.parse("application/json"), "{}"))
                 .header("Authorization", Credentials.basic(client.user, client.password))
                 .build();
 

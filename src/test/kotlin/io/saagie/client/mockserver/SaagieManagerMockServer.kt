@@ -64,6 +64,8 @@ class SaagieManagerMockServer {
                     baseUrl.encodedPath() + "/platform/1/workflow/1" -> return MockResponse().setResponseCode(200).setBody(WorkflowConstants.A_WORKFLOW.value)
                     baseUrl.encodedPath() + "/platform/1/workflow/1/instance" -> return MockResponse().setResponseCode(200).setBody(WorkflowConstants.ALL_INSTANCES.value)
                     baseUrl.encodedPath() + "/platform/1/workflow/1/instance/1" -> return MockResponse().setResponseCode(200).setBody(WorkflowConstants.AN_INSTANCE.value)
+                    baseUrl.encodedPath() + "/platform/1/workflow/1/run" -> return MockResponse().setResponseCode(204)
+                    baseUrl.encodedPath() + "/platform/1/workflow/1/stop" -> return MockResponse().setResponseCode(204)
                 }
                 return MockResponse().setResponseCode(404)
             }
