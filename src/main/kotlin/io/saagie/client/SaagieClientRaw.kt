@@ -83,4 +83,8 @@ class SaagieClientRaw(override var baseURL: String = "https://manager.prod.saagi
     fun runAJob(platformId: Int, jobId: Int) {
         jobClient.runAJob(platformId, jobId)
     }
+
+    fun stopAJob(platformId: Int, jobId: Int) {
+        jobClient.stopAJob(platformId, jobId)
+    }
 }

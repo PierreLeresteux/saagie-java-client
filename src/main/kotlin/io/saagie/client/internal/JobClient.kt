@@ -24,6 +24,8 @@ open class JobClient(var client: AbstractSaagieClient) {
 
     val PLATFORM = "platform"
     val JOB = "job"
+    val RUN = "run"
+    val STOP = "stop"
 
     fun getAllJobs(platformId: Int): Response {
         val request = Request.Builder()
@@ -49,7 +51,19 @@ open class JobClient(var client: AbstractSaagieClient) {
 
     fun runAJob(platformId: Int, jobId: Int): Response {
         val request = Request.Builder()
-                .url(client.constructURL(PLATFORM, platformId, JOB, jobId))
+                .url(client.constructURL(PLATFORM, platformId, JOB, jobId, RUN))
+                .post(RequestBody.create(MediaType.parse("application/json"), "{}"))
+                .header("Authorization", Credentials.basic(client.user, client.password))
+                .build();
+
+        val response = client.httpClient.newCall(request).execute()
+        client.checkResponse(response)
+        return response
+    }
+
+    fun stopAJob(platformId: Int, jobId: Int): Response {
+        val request = Request.Builder()
+                .url(client.constructURL(PLATFORM, platformId, JOB, jobId, STOP))
                 .post(RequestBody.create(MediaType.parse("application/json"), "{}"))
                 .header("Authorization", Credentials.basic(client.user, client.password))
                 .build();

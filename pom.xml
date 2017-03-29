@@ -150,14 +150,6 @@
 			<id>jcenter</id>
 			<url>http://jcenter.bintray.com</url>
         </repository>
-        <repository>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <id>bintray-kotlin-spek</id>
-            <name>bintray</name>
-            <url>http://dl.bintray.com/jetbrains/spek</url>
-        </repository>
 	</repositories>
 
 	<pluginRepositories>
