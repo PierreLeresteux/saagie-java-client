@@ -96,4 +96,16 @@ open class WorkflowClient(var client: AbstractSaagieClient) {
         return response
     }
 
+    fun stopAWorkflowInstance(platformId: Int, workflowId: Int, instanceId: Int): Response {
+        val request = Request.Builder()
+                .url(client.constructURL(PLATFORM, platformId, WORKFLOW, workflowId, INSTANCE, instanceId, STOP))
+                .post(RequestBody.create(MediaType.parse("application/json"), "{}"))
+                .header("Authorization", Credentials.basic(client.user, client.password))
+                .build();
+
+        val response = client.httpClient.newCall(request).execute()
+        client.checkResponse(response)
+        return response
+    }
+
 }
