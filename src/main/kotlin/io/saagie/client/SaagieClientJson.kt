@@ -19,6 +19,7 @@ import io.saagie.client.dto.platform.EnvVar
 import io.saagie.client.internal.AbstractSaagieClient
 import org.json.JSONArray
 import org.json.JSONObject
+import java.io.File
 
 /**
  * Created by pierre on 24/02/2017.
@@ -96,6 +97,10 @@ class SaagieClientJson(override var baseURL: String = "https://manager.prod.saag
 
     fun getAJobTask(jobTaskid: Int): JSONObject {
         return JSONObject(jobClient.getAJobTask(jobTaskid).body().string())
+    }
+
+    fun uploadFile(platformId: Int, file: File): JSONObject {
+        return JSONObject(jobClient.uploadFile(platformId, file).body().string())
     }
 
     // WORKFLOW

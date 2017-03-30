@@ -16,6 +16,7 @@
 package io.saagie.client.internal
 
 import okhttp3.*
+import java.io.File
 
 /**
  * Created by pierre on 01/03/2017.
@@ -26,6 +27,7 @@ open class JobClient(var client: AbstractSaagieClient) {
     val JOB = "job"
     val RUN = "run"
     val STOP = "stop"
+    val UPLOAD = "upload"
     val JOBTASK = "jobtask"
 
     fun getAllJobs(platformId: Int): Response {
@@ -88,6 +90,24 @@ open class JobClient(var client: AbstractSaagieClient) {
     fun getAJobTask(jobTaskid: Int): Response {
         val request = Request.Builder()
                 .url(client.constructURL(JOBTASK, jobTaskid))
+                .header("Authorization", Credentials.basic(client.user, client.password))
+                .build();
+
+        val response = client.httpClient.newCall(request).execute()
+        client.checkResponse(response)
+        return response
+    }
+
+    fun uploadFile(platformId: Int, file: File): Response {
+        val requestBody = MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("file", file.name,
+                        RequestBody.create(MediaType.parse("application/octet-stream"), file))
+                .build()
+
+        val request = Request.Builder()
+                .url(client.constructURL(PLATFORM, platformId, JOB, UPLOAD))
+                .post(requestBody)
                 .header("Authorization", Credentials.basic(client.user, client.password))
                 .build();
 

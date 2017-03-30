@@ -23,6 +23,7 @@ import org.jetbrains.spek.api.Spek
 import org.jetbrains.spek.api.dsl.describe
 import org.jetbrains.spek.api.dsl.it
 import org.jetbrains.spek.api.dsl.on
+import org.junit.rules.TemporaryFolder
 
 /**
  * Created by pierre on 01/03/2017.
@@ -30,6 +31,7 @@ import org.jetbrains.spek.api.dsl.on
 internal class JobClientTest : Spek({
     var jobClient = JobClient(AbstractSaagieClient())
     val mockServer = SaagieManagerMockServer()
+    val tempFolder = TemporaryFolder()
 
     describe("in a context of a JobClient") {
 
@@ -38,6 +40,7 @@ internal class JobClientTest : Spek({
             jobClient = JobClient(
                     AbstractSaagieClient(baseURL = mockServer.baseUrl())
             )
+            tempFolder.create()
         }
 
         on("call all jobs") {
@@ -84,8 +87,16 @@ internal class JobClientTest : Spek({
                 response.body().string() shouldEqualTo JobConstants.A_JOBTASK.value
             }
         }
+        on("upload a file") {
+            it("should return the filename") {
+                val response = jobClient.uploadFile(1, tempFolder.newFile("test.txt"))
+                response.code() shouldEqualTo 200
+                response.body().string() shouldEqualTo JobConstants.A_FILENAME.value
+            }
+        }
     }
     afterGroup {
         mockServer.shutdown()
+        tempFolder.delete()
     }
 })

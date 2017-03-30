@@ -51,6 +51,7 @@ class SaagieManagerMockServer {
                         return MockResponse().setResponseCode(200).setBody(PlatformConstants.CREATED_ENVVAR.value)
                     }
                     baseUrl.encodedPath() + "/platform/2/job" -> return MockResponse().setResponseCode(200).setBody(JobConstants.ALL_JOBS.value)
+                    baseUrl.encodedPath() + "/platform/1/job/upload" -> return MockResponse().setResponseCode(200).setBody(JobConstants.A_FILENAME.value)
                     baseUrl.encodedPath() + "/platform/2/job/1" -> {
                         if (request.method == "POST")
                             return MockResponse().setResponseCode(204)

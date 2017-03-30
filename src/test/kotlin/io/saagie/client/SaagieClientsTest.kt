@@ -18,6 +18,7 @@ package io.saagie.client
 import com.github.salomonbrys.kotson.fromJson
 import com.google.gson.Gson
 import io.saagie.client.dto.PaginatedObject
+import io.saagie.client.dto.job.FileUploadResponse
 import io.saagie.client.dto.job.Job
 import io.saagie.client.dto.job.JobTask
 import io.saagie.client.dto.platform.Capsule
@@ -37,6 +38,7 @@ import org.jetbrains.spek.api.dsl.it
 import org.jetbrains.spek.api.dsl.on
 import org.json.JSONArray
 import org.json.JSONObject
+import org.junit.rules.TemporaryFolder
 
 /**
  * Created by pierre on 28/02/2017.
@@ -47,6 +49,8 @@ internal class SaagieClientsTest : Spek({
     var saagieClientJson = SaagieClientJson()
     var saagieClient = SaagieClient()
     val gson = Gson()
+    val tempFolder = TemporaryFolder()
+
 
     describe("in a context of a SaagieClients") {
 
@@ -55,6 +59,7 @@ internal class SaagieClientsTest : Spek({
             saagieClientRaw = SaagieClientRaw(baseURL = mockServer.baseUrl())
             saagieClientJson = SaagieClientJson(baseURL = mockServer.baseUrl())
             saagieClient = SaagieClient(baseURL = mockServer.baseUrl())
+            tempFolder.create()
         }
 
         on("call all platforms") {
@@ -177,6 +182,18 @@ internal class SaagieClientsTest : Spek({
                 response shouldEqual gson.fromJson<Job>(JobConstants.A_JOB.value)
             }
         }
+
+        on("call a file upload") {
+            it("should return the filename") {
+                val rawResponse = saagieClientRaw.uploadFile(1, tempFolder.newFile())
+                rawResponse shouldEqualTo JobConstants.A_FILENAME.value
+                val jsonResponse = saagieClientJson.uploadFile(1, tempFolder.newFile())
+                jsonResponse.toString() shouldEqualTo JSONObject(JobConstants.A_FILENAME.value).toString()
+                val response = saagieClient.uploadFile(1, tempFolder.newFile())
+                response shouldEqual gson.fromJson<FileUploadResponse>(JobConstants.A_FILENAME.value)
+            }
+        }
+
         on("get all jobtasks for a job") {
             it("should return the paginated jobtasks list of a job") {
                 val rawResponse = saagieClientRaw.getJobTasksForAJob(2, 1)
@@ -245,6 +262,7 @@ internal class SaagieClientsTest : Spek({
 
         afterGroup {
             mockServer.shutdown()
+            tempFolder.delete()
         }
     }
 })

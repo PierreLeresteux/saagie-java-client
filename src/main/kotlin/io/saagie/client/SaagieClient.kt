@@ -18,6 +18,7 @@ package io.saagie.client
 import com.github.salomonbrys.kotson.fromJson
 import com.google.gson.Gson
 import io.saagie.client.dto.PaginatedObject
+import io.saagie.client.dto.job.FileUploadResponse
 import io.saagie.client.dto.job.Job
 import io.saagie.client.dto.job.JobTask
 import io.saagie.client.dto.platform.Capsule
@@ -26,6 +27,7 @@ import io.saagie.client.dto.platform.Platform
 import io.saagie.client.dto.workflow.Instance
 import io.saagie.client.dto.workflow.Workflow
 import io.saagie.client.internal.AbstractSaagieClient
+import java.io.File
 
 /**
  * Created by pierre on 24/02/2017.
@@ -105,6 +107,10 @@ class SaagieClient(override var baseURL: String = "https://manager.prod.saagie.i
 
     fun getAJobTask(jobTaskid: Int): JobTask {
         return gson.fromJson(jobClient.getAJobTask(jobTaskid).body().string())
+    }
+
+    fun uploadFile(platformId: Int, file: File): FileUploadResponse {
+        return gson.fromJson(jobClient.uploadFile(platformId, file).body().string())
     }
 
     // WORKFLOW

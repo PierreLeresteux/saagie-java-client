@@ -17,6 +17,7 @@ package io.saagie.client
 
 import io.saagie.client.dto.platform.EnvVar
 import io.saagie.client.internal.AbstractSaagieClient
+import java.io.File
 
 /**
  * Created by pierre on 24/02/2017.
@@ -94,6 +95,10 @@ class SaagieClientRaw(override var baseURL: String = "https://manager.prod.saagi
 
     fun getAJobTask(jobTaskid: Int): String {
         return jobClient.getAJobTask(jobTaskid).body().string()
+    }
+
+    fun uploadFile(platformId: Int, file: File): String {
+        return jobClient.uploadFile(platformId, file).body().string()
     }
 
     // WORKFLOW
