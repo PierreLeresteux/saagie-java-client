@@ -17,7 +17,6 @@ package io.saagie.client.internal
 
 import okhttp3.OkHttpClient
 import okhttp3.Response
-import java.util.concurrent.TimeUnit
 
 
 /**
@@ -30,11 +29,8 @@ open class AbstractSaagieClient(
         open var timeout: Long = 20
 ) {
 
-    val httpClient: OkHttpClient = OkHttpClient.Builder()
-            .connectTimeout(timeout, TimeUnit.SECONDS)
-            .writeTimeout(timeout, TimeUnit.SECONDS)
-            .readTimeout(timeout, TimeUnit.SECONDS)
-            .build();
+    val httpClient: OkHttpClient = UnsafeOkHttpClient.buildUnsafeOkHttpClient(timeout)
+
 
     var platformClient = PlatformClient(this)
     var jobClient = JobClient(this)
