@@ -32,9 +32,9 @@ open class AbstractSaagieClient(
     val httpClient: OkHttpClient = UnsafeOkHttpClient.buildUnsafeOkHttpClient(timeout)
 
 
-    var platformClient = PlatformClient(this)
-    var jobClient = JobClient(this)
-    var workflowClient = WorkflowClient(this)
+    val platformClient = PlatformClient(this)
+    val jobClient = JobClient(this)
+    val workflowClient = WorkflowClient(this)
 
     internal fun checkResponse(response: Response) {
         if (response.code() > 299)

@@ -15,6 +15,7 @@
  */
 package io.saagie.client
 
+import io.saagie.client.dto.job.JobCreate
 import io.saagie.client.dto.platform.EnvVar
 import io.saagie.client.internal.AbstractSaagieClient
 import java.io.File
@@ -99,6 +100,10 @@ class SaagieClientRaw(override var baseURL: String = "https://manager.prod.saagi
 
     fun uploadFile(platformId: Int, file: File): String {
         return jobClient.uploadFile(platformId, file).body().string()
+    }
+
+    fun createAJob(jobCreate: JobCreate): String {
+        return jobClient.createAJob(jobCreate).body().string()
     }
 
     // WORKFLOW

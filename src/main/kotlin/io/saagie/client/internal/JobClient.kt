@@ -15,6 +15,8 @@
  */
 package io.saagie.client.internal
 
+import com.google.gson.Gson
+import io.saagie.client.dto.job.JobCreate
 import okhttp3.*
 import java.io.File
 
@@ -29,6 +31,7 @@ open class JobClient(var client: AbstractSaagieClient) {
     val STOP = "stop"
     val UPLOAD = "upload"
     val JOBTASK = "jobtask"
+    val gson = Gson()
 
     fun getAllJobs(platformId: Int): Response {
         val request = Request.Builder()
@@ -108,6 +111,18 @@ open class JobClient(var client: AbstractSaagieClient) {
         val request = Request.Builder()
                 .url(client.constructURL(PLATFORM, platformId, JOB, UPLOAD))
                 .post(requestBody)
+                .header("Authorization", Credentials.basic(client.user, client.password))
+                .build();
+
+        val response = client.httpClient.newCall(request).execute()
+        client.checkResponse(response)
+        return response
+    }
+
+    fun createAJob(jobCreate: JobCreate): Response {
+        val request = Request.Builder()
+                .url(client.constructURL(PLATFORM, jobCreate.platformId, JOB))
+                .post(RequestBody.create(MediaType.parse("application/json"), gson.toJson(jobCreate)))
                 .header("Authorization", Credentials.basic(client.user, client.password))
                 .build();
 
