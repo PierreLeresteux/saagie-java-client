@@ -52,7 +52,7 @@
         <maven-assembly-plugin.version>2.6</maven-assembly-plugin.version>
         <maven-shade-plugin.version>2.4</maven-shade-plugin.version>
 		<spek-junit-platform-engine.version>1.1.0</spek-junit-platform-engine.version>
-        <okhttp.version>3.6.0</okhttp.version>
+        <okhttp.version>3.8.0</okhttp.version>
         <json.version>20160810</json.version>
         <kotson.version>2.5.0</kotson.version>
     </properties>
