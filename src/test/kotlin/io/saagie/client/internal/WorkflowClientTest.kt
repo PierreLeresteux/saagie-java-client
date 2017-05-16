@@ -43,21 +43,21 @@ internal class WorkflowClientTest : Spek({
             it("should return the list of all workflows") {
                 val response = workflowClient.getAllWorkflows(1)
                 response.code() shouldEqualTo 200
-                response.body().string() shouldEqualTo WorkflowConstants.ALL_WORKFLOWS.value
+                response.body()!!.string() shouldEqualTo WorkflowConstants.ALL_WORKFLOWS.value
             }
         }
         on("call a workflow") {
             it("should return the workflow") {
                 val response = workflowClient.getAWorkflow(1, 1)
                 response.code() shouldEqualTo 200
-                response.body().string() shouldEqualTo WorkflowConstants.A_WORKFLOW.value
+                response.body()!!.string() shouldEqualTo WorkflowConstants.A_WORKFLOW.value
             }
         }
         on("call all workflow instances") {
             it("should return the paginated list of all workflow instances") {
                 val response = workflowClient.getAllWorkflowInstances(1, 1)
                 response.code() shouldEqualTo 200
-                response.body().string() shouldEqualTo WorkflowConstants.ALL_INSTANCES.value
+                response.body()!!.string() shouldEqualTo WorkflowConstants.ALL_INSTANCES.value
             }
         }
         on("call start a workflow") {

@@ -49,7 +49,7 @@ internal class PlatformClientTest : Spek({
             it("should return the list of all platforms") {
                 val response = platformClient.getAllPlatforms()
                 response.code() shouldEqualTo 200
-                response.body().string() shouldEqualTo PlatformConstants.ALL_PLATFORMS.value
+                response.body()!!.string() shouldEqualTo PlatformConstants.ALL_PLATFORMS.value
             }
         }
 
@@ -57,7 +57,7 @@ internal class PlatformClientTest : Spek({
             it("should return the desired platform") {
                 val response = platformClient.getAPlatform(2)
                 response.code() shouldEqualTo 200
-                response.body().string() shouldEqualTo PlatformConstants.ONE_PLATFORM.value
+                response.body()!!.string() shouldEqualTo PlatformConstants.ONE_PLATFORM.value
             }
         }
 
@@ -65,7 +65,7 @@ internal class PlatformClientTest : Spek({
             it("should return the list of capsule for a platform") {
                 val response = platformClient.getAllCapsules(2)
                 response.code() shouldEqualTo 200
-                response.body().string() shouldEqualTo PlatformConstants.ALL_CAPSULES.value
+                response.body()!!.string() shouldEqualTo PlatformConstants.ALL_CAPSULES.value
             }
         }
 
@@ -73,7 +73,7 @@ internal class PlatformClientTest : Spek({
             it("should return the capsule for a platform and a capsulecode") {
                 val response = platformClient.getACapsule(2, "mongo")
                 response.code() shouldEqualTo 200
-                response.body().string() shouldEqualTo PlatformConstants.MONGO_CAPSULE.value
+                response.body()!!.string() shouldEqualTo PlatformConstants.MONGO_CAPSULE.value
             }
         }
 
@@ -81,7 +81,7 @@ internal class PlatformClientTest : Spek({
             it("should return the list of environnement variable for a platform") {
                 val response = platformClient.getAllEnvVars(2)
                 response.code() shouldEqualTo 200
-                response.body().string() shouldEqualTo PlatformConstants.ALL_ENVVARS.value
+                response.body()!!.string() shouldEqualTo PlatformConstants.ALL_ENVVARS.value
             }
         }
 
@@ -89,7 +89,7 @@ internal class PlatformClientTest : Spek({
             it("should return the created envvar for a platform") {
                 val response = platformClient.createEnvVar(2, gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value))
                 response.code() shouldEqualTo 200
-                response.body().string() shouldEqualTo PlatformConstants.CREATED_ENVVAR.value
+                response.body()!!.string() shouldEqualTo PlatformConstants.CREATED_ENVVAR.value
             }
         }
 
@@ -97,7 +97,7 @@ internal class PlatformClientTest : Spek({
             it("should return a non-content response") {
                 val response = platformClient.deleteEnvVar(2, 1)
                 response.code() shouldEqualTo 204
-                response.body().string().shouldBeEmpty()
+                response.body()!!.string().shouldBeEmpty()
             }
         }
 
@@ -105,7 +105,7 @@ internal class PlatformClientTest : Spek({
             it("should return the updated envvar for a platform") {
                 val response = platformClient.editEnvVar(2, 1, gson.fromJson<EnvVar>(PlatformConstants.CREATED_ENVVAR.value))
                 response.code() shouldEqualTo 200
-                response.body().string() shouldEqualTo PlatformConstants.CREATED_ENVVAR.value
+                response.body()!!.string() shouldEqualTo PlatformConstants.CREATED_ENVVAR.value
             }
         }
 

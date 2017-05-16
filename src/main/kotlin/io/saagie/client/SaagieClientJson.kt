@@ -31,56 +31,56 @@ class SaagieClientJson(override var baseURL: String = "https://manager.prod.saag
 
     // PLATFORM
     fun getAllPlatforms(): JSONArray {
-        return JSONArray(platformClient.getAllPlatforms().body().string())
+        return JSONArray(platformClient.getAllPlatforms().body()!!.string())
     }
 
     fun getAPlatform(platformId: Int): JSONObject {
-        return JSONObject(platformClient.getAPlatform(platformId).body().string())
+        return JSONObject(platformClient.getAPlatform(platformId).body()!!.string())
     }
 
     fun getAllCapsules(platformId: Int): JSONArray {
-        return JSONArray(platformClient.getAllCapsules(platformId).body().string())
+        return JSONArray(platformClient.getAllCapsules(platformId).body()!!.string())
     }
 
     fun getACapsule(platformId: Int, capsuleCode: String): JSONObject {
-        return JSONObject(platformClient.getACapsule(platformId, capsuleCode).body().string())
+        return JSONObject(platformClient.getACapsule(platformId, capsuleCode).body()!!.string())
     }
 
     fun getAllEnvVars(platformId: Int): JSONArray {
-        return JSONArray(platformClient.getAllEnvVars(platformId).body().string())
+        return JSONArray(platformClient.getAllEnvVars(platformId).body()!!.string())
     }
 
     fun createEnvVar(platformId: Int, envVar: EnvVar): JSONObject {
-        return JSONObject(platformClient.createEnvVar(platformId, envVar).body().string())
+        return JSONObject(platformClient.createEnvVar(platformId, envVar).body()!!.string())
     }
 
     fun createEnvVar(envVar: EnvVar): JSONObject {
-        return JSONObject(platformClient.createEnvVar(envVar.platformId!!, envVar).body().string())
+        return JSONObject(platformClient.createEnvVar(envVar.platformId!!, envVar).body()!!.string())
     }
 
     fun deleteEnvVar(platformId: Int, envvarId: Int) {
-        platformClient.deleteEnvVar(platformId, envvarId).body().string()
+        platformClient.deleteEnvVar(platformId, envvarId).body()!!.string()
     }
 
     fun deleteEnvVar(envVar: EnvVar) {
-        platformClient.deleteEnvVar(envVar.platformId!!, envVar.id!!).body().string()
+        platformClient.deleteEnvVar(envVar.platformId!!, envVar.id!!).body()!!.string()
     }
 
     fun editEnvVar(platformId: Int, envvarId: Int, envVar: EnvVar): JSONObject {
-        return JSONObject(platformClient.editEnvVar(platformId, envvarId, envVar).body().string())
+        return JSONObject(platformClient.editEnvVar(platformId, envvarId, envVar).body()!!.string())
     }
 
     fun editEnvVar(envVar: EnvVar): JSONObject {
-        return JSONObject(platformClient.editEnvVar(envVar.platformId!!, envVar.id!!, envVar).body().string())
+        return JSONObject(platformClient.editEnvVar(envVar.platformId!!, envVar.id!!, envVar).body()!!.string())
     }
 
     // JOB
     fun getAllJobs(platformId: Int): JSONArray {
-        return JSONArray(jobClient.getAllJobs(platformId).body().string())
+        return JSONArray(jobClient.getAllJobs(platformId).body()!!.string())
     }
 
     fun getAJob(platformId: Int, jobId: Int): JSONObject {
-        return JSONObject(jobClient.getAJob(platformId, jobId).body().string())
+        return JSONObject(jobClient.getAJob(platformId, jobId).body()!!.string())
     }
 
     fun runAJob(platformId: Int, jobId: Int) {
@@ -92,32 +92,32 @@ class SaagieClientJson(override var baseURL: String = "https://manager.prod.saag
     }
 
     fun getJobTasksForAJob(platformId: Int, jobId: Int): JSONObject {
-        return JSONObject(jobClient.getJobTasksForAJob(platformId, jobId).body().string())
+        return JSONObject(jobClient.getJobTasksForAJob(platformId, jobId).body()!!.string())
     }
 
     fun getAJobTask(jobTaskid: Int): JSONObject {
-        return JSONObject(jobClient.getAJobTask(jobTaskid).body().string())
+        return JSONObject(jobClient.getAJobTask(jobTaskid).body()!!.string())
     }
 
     fun uploadFile(platformId: Int, file: File): JSONObject {
-        return JSONObject(jobClient.uploadFile(platformId, file).body().string())
+        return JSONObject(jobClient.uploadFile(platformId, file).body()!!.string())
     }
 
     // WORKFLOW
     fun getAllWorkflows(platformId: Int): JSONArray {
-        return JSONArray(workflowClient.getAllWorkflows(platformId).body().string())
+        return JSONArray(workflowClient.getAllWorkflows(platformId).body()!!.string())
     }
 
     fun getAWorkflow(platformId: Int, workflowId: Int): JSONObject {
-        return JSONObject(workflowClient.getAWorkflow(platformId, workflowId).body().string())
+        return JSONObject(workflowClient.getAWorkflow(platformId, workflowId).body()!!.string())
     }
 
     fun getAllWorkflowInstances(platformId: Int, workflowId: Int): JSONObject {
-        return JSONObject(workflowClient.getAllWorkflowInstances(platformId, workflowId).body().string())
+        return JSONObject(workflowClient.getAllWorkflowInstances(platformId, workflowId).body()!!.string())
     }
 
     fun getAWorkflowInstance(platformId: Int, workflowId: Int, instanceId: Int): JSONObject {
-        return JSONObject(workflowClient.getAWorkflowInstance(platformId, workflowId, instanceId).body().string())
+        return JSONObject(workflowClient.getAWorkflowInstance(platformId, workflowId, instanceId).body()!!.string())
     }
 
     fun runAWorkflow(platformId: Int, workflowId: Int) {

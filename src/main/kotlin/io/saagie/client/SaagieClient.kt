@@ -41,56 +41,56 @@ class SaagieClient(override var baseURL: String = "https://manager.prod.saagie.i
 
     // PLATFORM
     fun getAllPlatforms(): List<Platform> {
-        return gson.fromJson(platformClient.getAllPlatforms().body().charStream())
+        return gson.fromJson(platformClient.getAllPlatforms().body()!!.charStream())
     }
 
     fun getAPlatform(platformId: Int): Platform {
-        return gson.fromJson(platformClient.getAPlatform(platformId).body().string())
+        return gson.fromJson(platformClient.getAPlatform(platformId).body()!!.string())
     }
 
     fun getAllCapsules(platformId: Int): List<Capsule> {
-        return gson.fromJson(platformClient.getAllCapsules(platformId).body().string())
+        return gson.fromJson(platformClient.getAllCapsules(platformId).body()!!.string())
     }
 
     fun getACapsule(platformId: Int, capsuleCode: String): Capsule {
-        return gson.fromJson(platformClient.getACapsule(platformId, capsuleCode).body().string())
+        return gson.fromJson(platformClient.getACapsule(platformId, capsuleCode).body()!!.string())
     }
 
     fun getAllEnvVars(platformId: Int): List<EnvVar> {
-        return gson.fromJson(platformClient.getAllEnvVars(platformId).body().string())
+        return gson.fromJson(platformClient.getAllEnvVars(platformId).body()!!.string())
     }
 
     fun createEnvVar(platformId: Int, envVar: EnvVar): EnvVar {
-        return gson.fromJson(platformClient.createEnvVar(platformId, envVar).body().string())
+        return gson.fromJson(platformClient.createEnvVar(platformId, envVar).body()!!.string())
     }
 
     fun createEnvVar(envVar: EnvVar): EnvVar {
-        return gson.fromJson(platformClient.createEnvVar(envVar.platformId!!, envVar).body().string())
+        return gson.fromJson(platformClient.createEnvVar(envVar.platformId!!, envVar).body()!!.string())
     }
 
     fun deleteEnvVar(platformId: Int, envvarId: Int) {
-        platformClient.deleteEnvVar(platformId, envvarId).body().string()
+        platformClient.deleteEnvVar(platformId, envvarId).body()!!.string()
     }
 
     fun deleteEnvVar(envVar: EnvVar) {
-        platformClient.deleteEnvVar(envVar.platformId!!, envVar.id!!).body().string()
+        platformClient.deleteEnvVar(envVar.platformId!!, envVar.id!!).body()!!.string()
     }
 
     fun editEnvVar(platformId: Int, envvarId: Int, envVar: EnvVar): EnvVar {
-        return gson.fromJson(platformClient.editEnvVar(platformId, envvarId, envVar).body().string())
+        return gson.fromJson(platformClient.editEnvVar(platformId, envvarId, envVar).body()!!.string())
     }
 
     fun editEnvVar(envVar: EnvVar): EnvVar {
-        return gson.fromJson(platformClient.editEnvVar(envVar.platformId!!, envVar.id!!, envVar).body().string())
+        return gson.fromJson(platformClient.editEnvVar(envVar.platformId!!, envVar.id!!, envVar).body()!!.string())
     }
 
     // JOB
     fun getAllJobs(platformId: Int): List<Job> {
-        return gson.fromJson(jobClient.getAllJobs(platformId).body().string())
+        return gson.fromJson(jobClient.getAllJobs(platformId).body()!!.string())
     }
 
     fun getAJob(platformId: Int, jobId: Int): Job {
-        return gson.fromJson(jobClient.getAJob(platformId, jobId).body().string())
+        return gson.fromJson(jobClient.getAJob(platformId, jobId).body()!!.string())
     }
 
     fun runAJob(platformId: Int, jobId: Int) {
@@ -102,32 +102,32 @@ class SaagieClient(override var baseURL: String = "https://manager.prod.saagie.i
     }
 
     fun getJobTasksForAJob(platformId: Int, jobId: Int): PaginatedObject<JobTask> {
-        return gson.fromJson(jobClient.getJobTasksForAJob(platformId, jobId).body().string())
+        return gson.fromJson(jobClient.getJobTasksForAJob(platformId, jobId).body()!!.string())
     }
 
     fun getAJobTask(jobTaskid: Int): JobTask {
-        return gson.fromJson(jobClient.getAJobTask(jobTaskid).body().string())
+        return gson.fromJson(jobClient.getAJobTask(jobTaskid).body()!!.string())
     }
 
     fun uploadFile(platformId: Int, file: File): FileUploadResponse {
-        return gson.fromJson(jobClient.uploadFile(platformId, file).body().string())
+        return gson.fromJson(jobClient.uploadFile(platformId, file).body()!!.string())
     }
 
     // WORKFLOW
     fun getAllWorkflows(platformId: Int): List<Workflow> {
-        return gson.fromJson(workflowClient.getAllWorkflows(platformId).body().string())
+        return gson.fromJson(workflowClient.getAllWorkflows(platformId).body()!!.string())
     }
 
     fun getAWorkflow(platformId: Int, workflowId: Int): Workflow {
-        return gson.fromJson(workflowClient.getAWorkflow(platformId, workflowId).body().string())
+        return gson.fromJson(workflowClient.getAWorkflow(platformId, workflowId).body()!!.string())
     }
 
     fun getAllWorkflowInstances(platformId: Int, workflowId: Int): PaginatedObject<JobTask> {
-        return gson.fromJson(workflowClient.getAllWorkflowInstances(platformId, workflowId).body().string())
+        return gson.fromJson(workflowClient.getAllWorkflowInstances(platformId, workflowId).body()!!.string())
     }
 
     fun getAWorkflowInstance(platformId: Int, workflowId: Int, instanceId: Int): Instance {
-        return gson.fromJson(workflowClient.getAWorkflowInstance(platformId, workflowId, instanceId).body().string())
+        return gson.fromJson(workflowClient.getAWorkflowInstance(platformId, workflowId, instanceId).body()!!.string())
     }
 
     fun runAWorkflow(platformId: Int, workflowId: Int) {

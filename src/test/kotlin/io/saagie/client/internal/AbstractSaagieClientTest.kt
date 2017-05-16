@@ -65,6 +65,7 @@ internal class AbstractSaagieClientTest : Spek({
                         .build())
                 .protocol(Protocol.HTTP_1_1)
                 .code(code)
+                .message("ok")
                 .body(ResponseBody.create(null, -1, Okio.buffer(source)))
                 .build();
     }

@@ -23,7 +23,6 @@ import org.jetbrains.spek.api.Spek
 import org.jetbrains.spek.api.dsl.describe
 import org.jetbrains.spek.api.dsl.it
 import org.jetbrains.spek.api.dsl.on
-import org.junit.rules.TemporaryFolder
 
 /**
  * Created by pierre on 01/03/2017.
@@ -47,21 +46,21 @@ internal class JobClientTest : Spek({
             it("should return the list of all jobs") {
                 val response = jobClient.getAllJobs(2)
                 response.code() shouldEqualTo 200
-                response.body().string() shouldEqualTo JobConstants.ALL_JOBS.value
+                response.body()!!.string() shouldEqualTo JobConstants.ALL_JOBS.value
             }
         }
         on("call a job") {
             it("should return the job") {
                 val response = jobClient.getAJob(2, 1)
                 response.code() shouldEqualTo 200
-                response.body().string() shouldEqualTo JobConstants.A_JOB.value
+                response.body()!!.string() shouldEqualTo JobConstants.A_JOB.value
             }
         }
         on("run a job") {
             it("should run the job and return a 204") {
                 val response = jobClient.runAJob(2, 1)
                 response.code() shouldEqualTo 204
-                response.body().string().shouldBeEmpty()
+                response.body()!!.string().shouldBeEmpty()
             }
 
         }
@@ -69,7 +68,7 @@ internal class JobClientTest : Spek({
             it("should stop the job and return a 204") {
                 val response = jobClient.stopAJob(2, 1)
                 response.code() shouldEqualTo 204
-                response.body().string().shouldBeEmpty()
+                response.body()!!.string().shouldBeEmpty()
             }
 
         }
@@ -77,21 +76,21 @@ internal class JobClientTest : Spek({
             it("should return the paginated list of jobtasks") {
                 val response = jobClient.getJobTasksForAJob(2, 1)
                 response.code() shouldEqualTo 200
-                response.body().string() shouldEqualTo JobConstants.ALL_JOBTASKS.value
+                response.body()!!.string() shouldEqualTo JobConstants.ALL_JOBTASKS.value
             }
         }
         on("get one jobtask") {
             it("should return the jobtask") {
                 val response = jobClient.getAJobTask(1)
                 response.code() shouldEqualTo 200
-                response.body().string() shouldEqualTo JobConstants.A_JOBTASK.value
+                response.body()!!.string() shouldEqualTo JobConstants.A_JOBTASK.value
             }
         }
         on("upload a file") {
             it("should return the filename") {
                 val response = jobClient.uploadFile(1, tempFolder.newFile("test.txt"))
                 response.code() shouldEqualTo 200
-                response.body().string() shouldEqualTo JobConstants.A_FILENAME.value
+                response.body()!!.string() shouldEqualTo JobConstants.A_FILENAME.value
             }
         }
     }

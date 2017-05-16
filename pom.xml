@@ -41,20 +41,20 @@
         <project.name>Saagie Client</project.name>
         <project.organization.email>pierre@saagie.com</project.organization.email>
         <java.version>1.8</java.version>
-		<kotlin.version>1.1.1</kotlin.version>
-        <junit.version>4.12</junit.version>
-        <junit.jupiter.version>5.0.0-M3</junit.jupiter.version>
-        <junit.vintage.version>${junit.version}.0-M3</junit.vintage.version>
-        <junit.platform.version>1.0.0-M3</junit.platform.version>
-        <kluent.version>1.15</kluent.version>
-		<spek-junit.version>1.1.0</spek-junit.version>
-        <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
-        <maven-assembly-plugin.version>2.6</maven-assembly-plugin.version>
-        <maven-shade-plugin.version>2.4</maven-shade-plugin.version>
-		<spek-junit-platform-engine.version>1.1.0</spek-junit-platform-engine.version>
+        <kotlin.version>1.1.2-3</kotlin.version>
         <okhttp.version>3.8.0</okhttp.version>
         <json.version>20160810</json.version>
         <kotson.version>2.5.0</kotson.version>
+        <junit.version>4.12</junit.version>
+        <junit.jupiter.version>5.0.0-M3</junit.jupiter.version>
+        <junit.vintage.version>${junit.version}.0-M3</junit.vintage.version>
+        <junit.platform.version>1.0.0-M4</junit.platform.version>
+        <kluent.version>1.15</kluent.version>
+        <spek-junit.version>1.1.1</spek-junit.version>
+        <spek-junit-platform-engine.version>1.1.1</spek-junit-platform-engine.version>
+        <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
+        <maven-assembly-plugin.version>2.6</maven-assembly-plugin.version>
+        <maven-shade-plugin.version>2.4</maven-shade-plugin.version>
     </properties>
 
 	<dependencies>
@@ -85,16 +85,16 @@
             <version>${kotson.version}</version>
         </dependency>
 
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-api</artifactId>
-			<version>${junit.jupiter.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit.jupiter.version}</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -137,11 +137,6 @@
 			<artifactId>kotlin-test</artifactId>
 			<version>${kotlin.version}</version>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jetbrains.kotlin</groupId>
-			<artifactId>kotlin-stdlib-jre8</artifactId>
-			<version>${kotlin.version}</version>
 		</dependency>
 	</dependencies>
 
@@ -227,6 +222,11 @@
 						<artifactId>junit-platform-surefire-provider</artifactId>
 						<version>${junit.platform.version}</version>
 					</dependency>
+                    <dependency>
+                        <groupId>org.junit.platform</groupId>
+                        <artifactId>junit-platform-launcher</artifactId>
+                        <version>${junit.platform.version}</version>
+                    </dependency>
 					<dependency>
 						<groupId>org.junit.jupiter</groupId>
 						<artifactId>junit-jupiter-engine</artifactId>

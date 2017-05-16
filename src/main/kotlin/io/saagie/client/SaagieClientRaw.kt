@@ -30,35 +30,35 @@ class SaagieClientRaw(override var baseURL: String = "https://manager.prod.saagi
 
     //PLATFORM
     fun getAllPlatforms(): String {
-        return platformClient.getAllPlatforms().body().string()
+        return platformClient.getAllPlatforms().body()!!.string()
     }
 
     fun getAPlatform(platformId: Int): String {
-        return platformClient.getAPlatform(platformId).body().string()
+        return platformClient.getAPlatform(platformId).body()!!.string()
     }
 
     fun getAllCapsules(platformId: Int): String {
-        return platformClient.getAllCapsules(platformId).body().string()
+        return platformClient.getAllCapsules(platformId).body()!!.string()
     }
 
     fun getACapsule(platformId: Int, capsuleCode: String): String {
-        return platformClient.getACapsule(platformId, capsuleCode).body().string()
+        return platformClient.getACapsule(platformId, capsuleCode).body()!!.string()
     }
 
     fun getAllEnvVars(platformId: Int): String {
-        return platformClient.getAllEnvVars(platformId).body().string()
+        return platformClient.getAllEnvVars(platformId).body()!!.string()
     }
 
     fun createEnvVar(platformId: Int, envVar: EnvVar): String {
-        return platformClient.createEnvVar(platformId, envVar).body().string()
+        return platformClient.createEnvVar(platformId, envVar).body()!!.string()
     }
 
     fun createEnvVar(envVar: EnvVar): String {
-        return platformClient.createEnvVar(envVar.platformId!!, envVar).body().string()
+        return platformClient.createEnvVar(envVar.platformId!!, envVar).body()!!.string()
     }
 
     fun deleteEnvVar(platformId: Int, envvarId: Int) {
-        platformClient.deleteEnvVar(platformId, envvarId).body().string()
+        platformClient.deleteEnvVar(platformId, envvarId).body()!!.string()
     }
 
     fun deleteEnvVar(envVar: EnvVar) {
@@ -66,20 +66,20 @@ class SaagieClientRaw(override var baseURL: String = "https://manager.prod.saagi
     }
 
     fun editEnvVar(platformId: Int, envvarId: Int, envVar: EnvVar): String {
-        return platformClient.editEnvVar(platformId, envvarId, envVar).body().string()
+        return platformClient.editEnvVar(platformId, envvarId, envVar).body()!!.string()
     }
 
     fun editEnvVar(envVar: EnvVar): String {
-        return platformClient.editEnvVar(envVar.platformId!!, envVar.id!!, envVar).body().string()
+        return platformClient.editEnvVar(envVar.platformId!!, envVar.id!!, envVar).body()!!.string()
     }
 
     // JOB
     fun getAllJobs(platformId: Int): String {
-        return jobClient.getAllJobs(platformId).body().string()
+        return jobClient.getAllJobs(platformId).body()!!.string()
     }
 
     fun getAJob(platformId: Int, jobId: Int): String {
-        return jobClient.getAJob(platformId, jobId).body().string()
+        return jobClient.getAJob(platformId, jobId).body()!!.string()
     }
 
     fun runAJob(platformId: Int, jobId: Int) {
@@ -91,36 +91,36 @@ class SaagieClientRaw(override var baseURL: String = "https://manager.prod.saagi
     }
 
     fun getJobTasksForAJob(platformId: Int, jobId: Int): String {
-        return jobClient.getJobTasksForAJob(platformId, jobId).body().string()
+        return jobClient.getJobTasksForAJob(platformId, jobId).body()!!.string()
     }
 
     fun getAJobTask(jobTaskid: Int): String {
-        return jobClient.getAJobTask(jobTaskid).body().string()
+        return jobClient.getAJobTask(jobTaskid).body()!!.string()
     }
 
     fun uploadFile(platformId: Int, file: File): String {
-        return jobClient.uploadFile(platformId, file).body().string()
+        return jobClient.uploadFile(platformId, file).body()!!.string()
     }
 
     fun createAJob(jobCreate: JobCreate): String {
-        return jobClient.createAJob(jobCreate).body().string()
+        return jobClient.createAJob(jobCreate).body()!!.string()
     }
 
     // WORKFLOW
     fun getAllWorkflows(platformId: Int): String {
-        return workflowClient.getAllWorkflows(platformId).body().string()
+        return workflowClient.getAllWorkflows(platformId).body()!!.string()
     }
 
     fun getAWorkflow(platformId: Int, workflowId: Int): String {
-        return workflowClient.getAWorkflow(platformId, workflowId).body().string()
+        return workflowClient.getAWorkflow(platformId, workflowId).body()!!.string()
     }
 
     fun getAllWorkflowInstances(platformId: Int, workflowId: Int): String {
-        return workflowClient.getAllWorkflowInstances(platformId, workflowId).body().string()
+        return workflowClient.getAllWorkflowInstances(platformId, workflowId).body()!!.string()
     }
 
     fun getAWorkflowInstance(platformId: Int, workflowId: Int, instanceId: Int): String {
-        return workflowClient.getAWorkflowInstance(platformId, workflowId, instanceId).body().string()
+        return workflowClient.getAWorkflowInstance(platformId, workflowId, instanceId).body()!!.string()
     }
 
     fun runAWorkflow(platformId: Int, workflowId: Int) {
