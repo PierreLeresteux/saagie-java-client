@@ -23,6 +23,7 @@ import org.jetbrains.spek.api.Spek
 import org.jetbrains.spek.api.dsl.describe
 import org.jetbrains.spek.api.dsl.it
 import org.jetbrains.spek.api.dsl.on
+import org.junit.rules.TemporaryFolder
 
 /**
  * Created by pierre on 01/03/2017.
